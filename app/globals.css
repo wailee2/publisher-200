@@ -5,11 +5,24 @@
   --foreground: #171717;
 }
 
-@theme inline {
+/* Adire Press design tokens declared correctly for Tailwind v4 */
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Custom Typography Setup */
+  --font-body: var(--font-ibm-plex-sans), sans-serif;
+  --font-display: var(--font-fraunces), serif;
+  
+  /* Custom Adire Press Palette */
+  --color-ink: #1E2420;
+  --color-paper: #EFE8D8;
+  --color-paper-dim: #E4DBC6;
+  --color-rust: #A1401F;
+  --color-gold: #B8963E;
+  --color-slate: #5B6560;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +35,89 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body); /* Set default body font to IBM Plex Sans */
+}
+
+/*
+  DESIGN TOKENS — Adire Press
+  ---------------------------
+  ink        #1E2420  deep bottle-green-black — primary text, dark sections
+  paper      #EFE8D8  warm parchment — primary background
+  paper-dim  #E4DBC6  slightly deeper parchment — card/section contrast
+  rust       #A1401F  wax-seal rust — primary accent, links, CTAs
+  gold       #B8963E  aged foil gold — secondary accent, small marks
+  slate      #5B6560  muted sage-grey — secondary text, captions
+
+  Display face: Fraunces (warm, literary, optical sizing)
+  Body face:    IBM Plex Sans (has a typewriter/manuscript lineage)
+
+  Signature element: "marginalia" — a red editorial mark (▍ + rotated tick)
+  used as a section eyebrow, referencing a copyeditor's pen mark in a
+  manuscript margin. Used sparingly — one per section, never decorative.
+*/
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background-color: theme("colors.rust");
+    color: theme("colors.paper");
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display); /* Updated to map cleanly to the display font */
+    letter-spacing: -0.01em;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid theme("colors.rust");
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* The signature "marginalia" eyebrow — a copyeditor's margin mark
+     preceding a section title. Only ever paired with a section heading. */
+  .marginalia {
+    @apply inline-flex items-center gap-2 text-rust font-body text-sm uppercase tracking-[0.18em] mb-3;
+  }
+
+  .marginalia::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    background: theme("colors.rust");
+    transform: rotate(-8deg);
+  }
+
+  .container-press {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-rust text-paper px-6 py-3 font-body text-sm font-medium tracking-wide transition-colors hover:bg-ink;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 border border-ink/30 text-ink px-6 py-3 font-body text-sm font-medium tracking-wide transition-colors hover:border-rust hover:text-rust;
+  }
 }
