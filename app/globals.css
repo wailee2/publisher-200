@@ -4,13 +4,9 @@
   DESIGN TOKENS — The Odoh Publishers
   ------------------------------------
   Source of truth: Figma design system (blue brand, #0044F1).
-  Declared as CSS variables + Tailwind v4 @theme so every token below
-  is usable directly as a utility class, e.g. bg-primary, text-text-secondary,
-  border-border-hover.
 */
 
 :root {
-  /* Brand */
   --color-primary: #0044F1;
   --color-primary-hover: #003ACD;
   --color-primary-active: #0030A9;
@@ -18,20 +14,17 @@
   --color-secondary-hover: #1D2939;
   --color-accent: #F79009;
 
-  /* Backgrounds */
   --color-bg: #FFFFFF;
   --color-bg-secondary: #F5F7FA;
   --color-card-bg: #FFFFFF;
   --color-card-bg-alt: #FAFBFC;
 
-  /* Text */
   --color-text-primary: #101828;
   --color-text-secondary: #475467;
   --color-text-muted: #656566;
   --color-text-disabled: #D0D5DD;
   --color-text-on-primary: #FFFFFF;
 
-  /* Borders */
   --color-border: #CCCDCF;
   --color-border-hover: #0044F1;
   --color-border-strong: #D0D5DD;
@@ -60,7 +53,6 @@
   --color-border-hover: var(--color-border-hover);
   --color-border-strong: var(--color-border-strong);
 
-  /* Single-family type system — weight carries hierarchy, not typeface */
   --font-display: var(--font-inter), sans-serif;
   --font-body: var(--font-inter), sans-serif;
 }
@@ -105,9 +97,6 @@ body {
 }
 
 @layer components {
-  /* Signature eyebrow mark — a filled primary-color dot before a small
-     uppercase label, matching the Figma "• SECTION NAME" pattern used
-     above every major section heading. */
   .eyebrow {
     @apply inline-flex items-center gap-2 text-text-primary font-body text-xs font-semibold uppercase tracking-[0.14em] mb-4;
   }
@@ -126,13 +115,10 @@ body {
     @apply mx-auto w-full max-w-7xl px-6 md:px-10;
   }
 
-  /* Pill button — the rounded-full button shape used throughout the
-     design (primary blue fill, white/outline variant, dark variant).
-     Tailwind v4 can't @apply one custom component class inside another,
-     so each variant is written out in full rather than composed. */
   .btn-pill-primary {
     @apply inline-flex items-center gap-3 rounded-full pl-6 pr-2 py-2 font-body text-sm font-medium transition-colors bg-primary text-text-on-primary hover:bg-primary-hover;
   }
+  
   .btn-pill-primary .btn-pill-icon {
     @apply bg-white text-primary;
   }
@@ -140,21 +126,25 @@ body {
   .btn-pill-white {
     @apply inline-flex items-center gap-3 rounded-full pl-6 pr-2 py-2 font-body text-sm font-medium transition-colors bg-white text-text-primary hover:bg-bg-secondary;
   }
+  
   .btn-pill-white .btn-pill-icon {
     @apply bg-primary text-text-on-primary;
   }
 
   .btn-pill-icon {
-    @apply flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0;
+    @apply flex items-center justify-center w-8 h-8 rounded-full shrink-0;
   }
 
-  /* Standard rectangular buttons, for form/utility contexts */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 bg-primary text-text-on-primary px-6 py-3 rounded-full font-body text-sm font-medium transition-colors hover:bg-primary-hover;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 border border-border text-text-primary px-6 py-3 rounded-full font-body text-sm font-medium transition-colors hover:border-primary hover:text-primary;
+    @apply inline-flex items-center justify-center gap-2 border border-border text-text-primary px-6 py-3 rounded-full font-body text-sm font-medium transition-colors;
+  }
+  
+  .btn-secondary:hover {
+    @apply border-primary text-primary;
   }
 
   .card {

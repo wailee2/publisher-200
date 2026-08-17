@@ -27,7 +27,7 @@ export default async function AboutPage() {
         {settings?.aboutHeadline || "The team behind the work that works."}
       </h1>
 
-      <div className="aspect-[16/9] bg-bg-secondary rounded-2xl overflow-hidden relative mb-12">
+      <div className="aspect-video bg-bg-secondary rounded-2xl overflow-hidden relative mb-12">
         {aboutImgUrl ? (
           <Image src={aboutImgUrl} alt="The Odoh Publishers team" fill className="object-cover" />
         ) : (
@@ -54,7 +54,7 @@ export default async function AboutPage() {
                 : null;
               return (
                 <div key={member._id} className="rounded-xl overflow-hidden border border-border">
-                  <div className="aspect-[4/5] bg-bg-secondary relative">
+                  <div className="aspect-4/5 bg-bg-secondary relative">
                     {photoUrl && (
                       <Image src={photoUrl} alt={member.name} fill className="object-cover grayscale" />
                     )}
