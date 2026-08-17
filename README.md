@@ -1,37 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Odoh Publishers — Website
 
-## Getting Started
+Next.js 16 + Sanity CMS site for The Odoh Publishers. Pages: Home, About,
+Services, Portfolio (renamed from Book Catalog), Contact.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router, Turbopack by default) — see `AGENTS.md` if
+  you're using an AI coding assistant on this repo; Next 16 has breaking
+  changes vs older training data, and the bundled docs at
+  `node_modules/next/dist/docs/` are the source of truth.
+- **Sanity** — CMS/database + image hosting (`/studio` route)
+- **Tailwind CSS v4** — CSS-first config, all design tokens live in
+  `app/globals.css` under `:root` and `@theme` (no `tailwind.config.ts`)
+- **Inter** — single-family type system (weight carries hierarchy)
+- **Resend** — contact form + newsletter email delivery (free tier)
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Create a Sanity project (or reuse the existing one) at
+   [sanity.io/manage](https://www.sanity.io/manage).
+2. Copy `.env.example` to `.env.local` and fill in your Sanity project ID
+   and Resend API key.
+3. Run the dev server:
+   ```bash
+   npm run dev
+   ```
+   Site: [http://localhost:3000](http://localhost:3000)
+   Studio: [http://localhost:3000/studio](http://localhost:3000/studio)
+4. (Optional) Seed starter text content:
+   ```bash
+   npm run seed
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Design tokens
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All colors, defined once in `app/globals.css`:
 
-## Learn More
+| Token | Hex | Use |
+|---|---|---|
+| `primary` | `#0044F1` | Buttons, links, active nav, key CTAs |
+| `primary-hover` | `#003ACD` | |
+| `primary-active` | `#0030A9` | |
+| `secondary` | `#101828` | Dark buttons/sections |
+| `accent` | `#F79009` | Sparse highlight use |
+| `bg` / `bg-secondary` | `#FFFFFF` / `#F5F7FA` | Page backgrounds |
+| `card-bg` / `card-bg-alt` | `#FFFFFF` / `#FAFBFC` | Card surfaces |
+| `text-primary` / `text-secondary` / `text-muted` / `text-disabled` | `#101828` / `#475467` / `#656566` / `#D0D5DD` | Text hierarchy |
+| `border` / `border-hover` / `border-strong` | `#CCCDCF` / `#0044F1` / `#D0D5DD` | Borders |
 
-To learn more about Next.js, take a look at the following resources:
+Used directly as Tailwind utilities: `bg-primary`, `text-text-secondary`,
+`border-border-hover`, etc.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content editing (Sanity Studio)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Go to `/studio`. Content types:
 
-## Deploy on Vercel
+- **Site Settings** — one document, grouped by section (Hero, Why Choose
+  Us, About Page, Our Process, CTA Banner, Footer, Contact Info). Covers
+  every editable heading/subtext plus the hero image and about-page image.
+- **Portfolio** — the work grid (renamed from "Book"). Cover image,
+  title, category, optional author/summary/link, `featured` toggle for
+  the homepage grid.
+- **Services** — 4 services, each with two images (image 1 shows on both
+  the homepage teaser and the Services page; image 2 only on Services).
+- **Team Members** — About page team grid.
+- **Testimonials** — homepage testimonial cards.
+- **FAQs** — homepage FAQ accordion.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Fixed-count sections (Why Choose Us pillars, Process steps) are capped at
+3 items in the schema since the layout is a fixed 3-card grid — text and
+images are editable, structure isn't.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# publisher-200" 
+## Known gaps / next steps
+
+- **Portfolio detail page** (`/portfolio/[slug]`) has no Figma design yet
+  — built to match the existing design system so it's not broken, but
+  swap in the real layout once it's designed.
+- No CAPTCHA/rate-limiting on the contact form yet — add
+  [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/) if
+  spam becomes an issue.
+- Mobile nav is a plain inline list, not a drawer — fine for 4 nav items,
+  revisit if the nav grows.
+
+## Scripts
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Start local dev server (Turbopack) |
+| `npm run build` | Production build |
+| `npm run start` | Run the production build locally |
+| `npm run lint` | Lint the codebase |
+| `npm run seed` | Push starter text content into Sanity |

@@ -1,9 +1,7 @@
 /**
- * Seeds Sanity with starter content so the site isn't empty on first run.
- * This is optional — you can also just type this content into the Studio
- * by hand. Run with: node scripts/seed.mjs
- *
- * Requires a write token: create one at sanity.io/manage → API → Tokens
+ * Seeds Sanity with starter text content so the site isn't empty on
+ * first run. Run with: node scripts/seed.mjs
+ * Requires a write token — create one at sanity.io/manage → API → Tokens
  * (Editor permission is enough), then set SANITY_API_WRITE_TOKEN in .env
  */
 import { createClient } from "@sanity/client";
@@ -29,53 +27,61 @@ async function seed() {
   await client.createOrReplace({
     _id: "siteSettings",
     _type: "siteSettings",
-    companyName: "Adire Press",
-    tagline:
-      "We publish fiction, poetry, and non-fiction from Nigerian writers who have something to say — and edit it like it matters.",
+    companyName: "The Odoh Publishers",
+    heroEyebrow: "Meet Odoh",
+    heroHeadline: "We publish the books Nigerian readers actually pick up.",
+    heroSubtext:
+      "We publish fiction, poetry, and non-fiction from writers who have something to say — and edit it like it matters.",
+    heroBadgeText: "Trusted by 500+ Authors Worldwide",
+    whyChooseUsHeadline: "We combine bold creativity with strategy to drive results.",
+    pillars: [
+      { title: "Editorial", description: "Every manuscript goes through developmental and line editing with someone who reads the genre, not just the grammar." },
+      { title: "Design", description: "Cover and interior design built for Nigerian bookshelves and the online shop window alike." },
+      { title: "Distribution", description: "Print and digital distribution across Nigeria, with direct sales through our own catalog." },
+    ],
+    aboutHeadline: "The team behind the work that works.",
     aboutStory:
-      "Adire Press was founded in Lagos by a small group of editors and designers who were tired of watching strong manuscripts stall.\nWe take on a small list of titles each year because we'd rather do a few books well than a lot of books quickly.\nWe're named for adire, the resist-dyed cloth of southwest Nigeria — made slowly, by hand, built to hold its pattern for decades.",
-    email: "hello@adirepress.ng",
-    phone: "+234 800 000 0000",
-    address: "14 Freedom Way, Lekki Phase 1, Lagos",
+      "The Odoh Publishers was founded in Nigeria by a group of editors and designers who were tired of watching strong manuscripts stall. We take on a small list of titles each year because we'd rather do a few books well than a lot of books quickly.",
+    processHeadline: "A simple yet powerful and efficient process.",
+    processSteps: [
+      { title: "Consultation", description: "We begin with a detailed consultation to understand your vision, goals, and requirements for your book." },
+      { title: "Content Creation", description: "Our expert team works on creating high-quality content that aligns with your vision and target audience." },
+      { title: "Publication", description: "We handle the technical aspects of publishing your book in both digital and print formats." },
+    ],
+    ctaHeadline: "Join us in creating and publishing art",
+    ctaButtonText: "Let us collaborate",
+    footerHeadline: "Let's build something great",
+    footerSubtext: "Odoh helps authors turn ideas into results through design, strategy, and innovation.",
+    footerButtonText: "Get started",
+    email: "contact@odoh.com",
+    phone: "+23481234567",
+    address: "134 Blues Avenue, Brick City, Abuja Nigeria",
   });
 
   console.log("Seeding Services...");
   const services = [
-    {
-      title: "Developmental & line editing",
-      icon: "Ed.",
-      summary:
-        "Structural feedback on plot, pacing, and argument, followed by sentence-level line editing.",
-      order: 1,
-    },
-    {
-      title: "Full-service publishing",
-      icon: "Pr.",
-      summary:
-        "Editing, cover and interior design, ISBN registration, print production, and distribution.",
-      order: 2,
-    },
-    {
-      title: "Cover & interior design",
-      icon: "Ds.",
-      summary:
-        "Standalone design services for self-publishing authors who already have an editor.",
-      order: 3,
-    },
-    {
-      title: "Manuscript consultation",
-      icon: "Ct.",
-      summary:
-        "A single paid session to assess a manuscript's readiness and map out next steps.",
-      order: 4,
-    },
+    { title: "Full-service publishing", summary: "Editing, cover and interior design, ISBN registration, print production, and distribution — for writers we bring onto the Odoh Publishers list.", order: 1 },
+    { title: "Developmental & line editing", summary: "Structural feedback on plot, pacing, and argument, followed by sentence-level line editing. For manuscripts that are close but not yet ready to submit anywhere.", order: 2 },
+    { title: "Cover & interior design", summary: "Standalone design services for self-publishing authors who already have an editor and just need a cover and interior layout that hold up on a shelf.", order: 3 },
+    { title: "Manuscript consultation", summary: "A single paid session to assess a manuscript's readiness and map out what it needs before submission — to us or anyone else.", order: 4 },
   ];
   for (const s of services) {
     await client.create({ _type: "service", ...s });
   }
 
-  console.log("Done. Add cover images and team photos directly in the Studio —");
-  console.log("images can't be seeded from a script without uploading files.");
+  console.log("Seeding FAQs...");
+  const faqs = [
+    { question: "What type of services does Odoh Publishers provide?", answer: "We provide a comprehensive range of publishing services including ghost writing, editing and proofreading, printing and consultation, marketing and distribution, and transcription services.", order: 1 },
+    { question: "How Long does the Publishing Process take?", answer: "Timelines vary by project, but most books move from consultation to publication in a few months once the manuscript is ready.", order: 2 },
+    { question: "Do I retain the Rights to my Book?", answer: "Yes — authors retain the rights to their work under our standard publishing agreement.", order: 3 },
+    { question: "What Format will my Book be Available in?", answer: "We publish in both print and digital formats, depending on the title and distribution plan.", order: 4 },
+  ];
+  for (const f of faqs) {
+    await client.create({ _type: "faqItem", ...f });
+  }
+
+  console.log("Done. Add images (hero, portfolio covers, team photos, testimonial");
+  console.log("photos) directly in the Studio — scripts can't upload image files.");
 }
 
 seed().catch((err) => {

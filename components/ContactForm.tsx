@@ -3,9 +3,7 @@
 import { useState } from "react";
 
 export default function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">(
-    "idle"
-  );
+  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,9 +27,9 @@ export default function ContactForm() {
 
   if (status === "done") {
     return (
-      <div className="border border-ink/15 p-8">
-        <p className="font-display text-xl mb-2">Message sent.</p>
-        <p className="font-body text-sm text-slate">
+      <div className="border border-border rounded-xl p-8">
+        <p className="font-display text-xl font-semibold text-text-primary mb-2">Message sent.</p>
+        <p className="font-body text-sm text-text-secondary">
           We reply to most notes within two working days.
         </p>
       </div>
@@ -39,68 +37,43 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <div>
-        <label htmlFor="name" className="block font-body text-sm mb-1.5">
-          Name
-        </label>
-        <input
-          id="name"
-          name="name"
-          required
-          className="w-full border border-ink/20 bg-paper px-4 py-3 font-body text-sm focus:outline-none focus:border-rust"
-        />
-      </div>
-      <div>
-        <label htmlFor="email" className="block font-body text-sm mb-1.5">
-          Email
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          className="w-full border border-ink/20 bg-paper px-4 py-3 font-body text-sm focus:outline-none focus:border-rust"
-        />
-      </div>
-      <div>
-        <label htmlFor="reason" className="block font-body text-sm mb-1.5">
-          This is about
-        </label>
-        <select
-          id="reason"
-          name="reason"
-          className="w-full border border-ink/20 bg-paper px-4 py-3 font-body text-sm focus:outline-none focus:border-rust"
-        >
-          <option>Manuscript submission</option>
-          <option>Editorial services</option>
-          <option>Press / media</option>
-          <option>Something else</option>
-        </select>
-      </div>
-      <div>
-        <label htmlFor="message" className="block font-body text-sm mb-1.5">
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          rows={6}
-          className="w-full border border-ink/20 bg-paper px-4 py-3 font-body text-sm focus:outline-none focus:border-rust"
-        />
-      </div>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <input
+        name="name"
+        placeholder="Full Name*"
+        required
+        className="w-full border border-border rounded-lg bg-bg px-4 py-3.5 font-body text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-hover"
+      />
+      <input
+        name="email"
+        type="email"
+        placeholder="Email*"
+        required
+        className="w-full border border-border rounded-lg bg-bg px-4 py-3.5 font-body text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-hover"
+      />
+      <input
+        name="subject"
+        placeholder="Subject*"
+        required
+        className="w-full border border-border rounded-lg bg-bg px-4 py-3.5 font-body text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-hover"
+      />
+      <textarea
+        name="message"
+        placeholder="Message*"
+        required
+        rows={6}
+        className="w-full border border-border rounded-lg bg-bg px-4 py-3.5 font-body text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-hover"
+      />
       <button
         type="submit"
         disabled={status === "loading"}
-        className="btn-primary w-full sm:w-auto disabled:opacity-60"
+        className="btn-primary w-full disabled:opacity-60"
       >
         {status === "loading" ? "Sending..." : "Send message"}
       </button>
       {status === "error" && (
-        <p role="alert" className="font-body text-sm text-rust">
-          Something went wrong on our end — please try again or email us
-          directly.
+        <p role="alert" className="font-body text-sm text-primary">
+          Something went wrong on our end — please try again or email us directly.
         </p>
       )}
     </form>

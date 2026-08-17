@@ -1,10 +1,12 @@
 import { type SchemaTypeDefinition } from "sanity";
 
-import { book } from "./book";
+import { siteSettings } from "./siteSettings";
+import { portfolioItem } from "./portfolioItem";
 import { service } from "./service";
 import { teamMember } from "./teamMember";
-import { siteSettings } from "./siteSettings";
+import { testimonial } from "./testimonial";
+import { faqItem } from "./faqItem";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [siteSettings, book, service, teamMember],
+  types: [siteSettings, portfolioItem, service, teamMember, testimonial, faqItem],
 };

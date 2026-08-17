@@ -1,11 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
 // Sends contact-form submissions by email via Resend (free tier: 3,000
-// emails/month, no card required). No database write — this is a
-// pass-through notifier, not a stored record. If you want submissions
-// saved too, that's a one-field addition to the Sanity schema.
+// emails/month, no card required).
 export async function POST(req: NextRequest) {
-  const { name, email, reason, message } = await req.json();
+  const { name, email, subject, message } = await req.json();
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
@@ -29,11 +27,11 @@ export async function POST(req: NextRequest) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: "Adire Press Website <onboarding@resend.dev>",
+      from: "Odoh Publishers Website <onboarding@resend.dev>",
       to,
       reply_to: email,
-      subject: `New enquiry: ${reason || "Website contact form"}`,
-      text: `From: ${name} <${email}>\nReason: ${reason}\n\n${message}`,
+      subject: `New enquiry: ${subject || "Website contact form"}`,
+      text: `From: ${name} <${email}>\nSubject: ${subject}\n\n${message}`,
     }),
   });
 

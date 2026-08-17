@@ -2,11 +2,9 @@
 
 import { useState } from "react";
 
-export default function NewsletterForm({ dark = false }: { dark?: boolean }) {
+export default function NewsletterForm() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">(
-    "idle"
-  );
+  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -27,7 +25,7 @@ export default function NewsletterForm({ dark = false }: { dark?: boolean }) {
 
   if (status === "done") {
     return (
-      <p className={`font-body text-sm ${dark ? "text-paper" : "text-ink"}`}>
+      <p className="font-body text-sm text-text-primary">
         You&apos;re subscribed. Watch your inbox.
       </p>
     );
@@ -45,16 +43,12 @@ export default function NewsletterForm({ dark = false }: { dark?: boolean }) {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="you@email.com"
-        className={`flex-1 min-w-0 px-3 py-2 text-sm font-body border ${
-          dark
-            ? "bg-transparent border-paper/30 text-paper placeholder:text-paper/40"
-            : "bg-paper border-ink/20 text-ink placeholder:text-ink/40"
-        } focus:outline-none focus:border-rust`}
+        className="flex-1 min-w-0 px-3 py-2 text-sm font-body border border-border bg-bg text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-hover rounded-lg"
       />
       <button
         type="submit"
         disabled={status === "loading"}
-        className="btn-primary px-4 py-2 text-xs disabled:opacity-60"
+        className="btn-primary !px-4 !py-2 text-xs disabled:opacity-60"
       >
         {status === "loading" ? "..." : "Sign up"}
       </button>

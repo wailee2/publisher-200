@@ -1,11 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { getSiteSettings, getTeamMembers } from "@/lib/queries";
 import { urlForImage } from "@/sanity/image";
+import type { TeamMember } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "About — Adire Press",
-  description: "The story behind Adire Press and the people who run it.",
+  title: "About — The Odoh Publishers",
+  description: "The team behind The Odoh Publishers and the story of how it started.",
 };
 
 export default async function AboutPage() {
@@ -14,79 +16,66 @@ export default async function AboutPage() {
     getTeamMembers().catch(() => []),
   ]);
 
+  const aboutImgUrl = settings?.aboutImage
+    ? urlForImage(settings.aboutImage).width(1600).height(900).url()
+    : null;
+
   return (
     <div className="container-press py-16 md:py-24">
-      <p className="marginalia">Our story</p>
-      <h1 className="font-display text-4xl md:text-5xl text-ink max-w-2xl">
-        We started Adire Press because too many good Nigerian manuscripts
-        were going nowhere.
+      <p className="eyebrow">About us</p>
+      <h1 className="font-display text-4xl md:text-6xl font-bold text-text-primary max-w-2xl mb-12">
+        {settings?.aboutHeadline || "The team behind the work that works."}
       </h1>
 
-      <div className="mt-12 max-w-prose font-body text-ink/80 text-lg leading-relaxed space-y-5">
-        {settings?.aboutStory ? (
-          settings.aboutStory
-            .split("\n")
-            .filter(Boolean)
-            .map((para: string, i: number) => <p key={i}>{para}</p>)
+      <div className="aspect-[16/9] bg-bg-secondary rounded-2xl overflow-hidden relative mb-12">
+        {aboutImgUrl ? (
+          <Image src={aboutImgUrl} alt="The Odoh Publishers team" fill className="object-cover" />
         ) : (
-          <>
-            <p>
-              Adire Press was founded in Lagos by a small group of editors
-              and designers who were tired of watching strong manuscripts
-              stall — not for lack of talent, but for lack of a publisher
-              willing to do the unglamorous work: real editing, honest
-              cover design, and distribution that actually reaches readers.
-            </p>
-            <p>
-              We take on a small list of titles each year — fiction, poetry,
-              and non-fiction — because we&apos;d rather do a few books well
-              than a lot of books quickly. Every manuscript we accept gets a
-              full editorial pass, a cover designed specifically for it, and
-              a real go at both print and online distribution.
-            </p>
-            <p>
-              We&apos;re named for adire, the resist-dyed cloth of southwest
-              Nigeria — made slowly, by hand, built to hold its pattern for
-              decades. That&apos;s the standard we hold books to.
-            </p>
-          </>
+          <div className="absolute inset-0 flex items-center justify-center text-text-muted text-sm font-body px-8 text-center">
+            Add a story image in Site Settings → About Page → the studio at /studio
+          </div>
         )}
       </div>
 
+      <div className="max-w-2xl">
+        <p className="font-display text-2xl md:text-3xl font-semibold text-text-primary leading-snug">
+          {settings?.aboutStory ||
+            "The Odoh Publishers was founded in Nigeria by a group of editors and designers who were tired of watching strong manuscripts stall. We take on a small list of titles each year because we'd rather do a few books well than a lot of books quickly — real editing, honest cover design, and distribution that actually reaches readers."}
+        </p>
+      </div>
+
       {team.length > 0 && (
-        <div className="mt-20">
-          <p className="marginalia">The people</p>
-          <h2 className="font-display text-2xl md:text-3xl text-ink mb-10">
-            Who you&apos;ll work with
-          </h2>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
-            {team.map((member: any) => {
+        <div className="mt-24">
+          <p className="eyebrow">Our team</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mt-8">
+            {team.map((member: TeamMember) => {
               const photoUrl = member.photo
-                ? urlForImage(member.photo).width(400).height(400).url()
+                ? urlForImage(member.photo).width(500).height(600).url()
                 : null;
               return (
-                <div key={member._id}>
-                  <div className="aspect-square bg-paper-dim relative mb-4 overflow-hidden">
-                    {photoUrl ? (
-                      <Image
-                        src={photoUrl}
-                        alt={member.name}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : null}
+                <div key={member._id} className="rounded-xl overflow-hidden border border-border">
+                  <div className="aspect-[4/5] bg-bg-secondary relative">
+                    {photoUrl && (
+                      <Image src={photoUrl} alt={member.name} fill className="object-cover grayscale" />
+                    )}
                   </div>
-                  <p className="font-display text-lg text-ink">{member.name}</p>
-                  <p className="font-body text-sm text-rust mb-2">{member.role}</p>
-                  {member.bio && (
-                    <p className="font-body text-sm text-ink/70">{member.bio}</p>
-                  )}
+                  <div className="p-4">
+                    <p className="font-body text-sm font-semibold text-text-primary">{member.name}</p>
+                    <p className="font-body text-xs text-text-muted">{member.role}</p>
+                  </div>
                 </div>
               );
             })}
           </div>
         </div>
       )}
+
+      <div className="mt-20">
+        <Link href="/contact" className="btn-pill-primary">
+          Get in touch
+          <span className="btn-pill-icon">↗</span>
+        </Link>
+      </div>
     </div>
   );
 }

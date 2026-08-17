@@ -12,24 +12,32 @@ export const service = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "icon",
-      title: "Icon label",
-      type: "string",
-      description:
-        "A short word/symbol shown as the visual mark for this service, e.g. 'Ed.' or 'MS'.",
+      name: "summary",
+      title: "Description",
+      type: "text",
+      rows: 3,
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "summary",
-      title: "Summary",
-      type: "text",
-      rows: 4,
-      validation: (Rule) => Rule.required(),
+      name: "imageOne",
+      title: "Image 1",
+      type: "image",
+      options: { hotspot: true },
+      description: "Shown on both the homepage teaser and the full Services page.",
+    }),
+    defineField({
+      name: "imageTwo",
+      title: "Image 2",
+      type: "image",
+      options: { hotspot: true },
+      description: "Shown only on the full Services page (side-by-side with Image 1).",
     }),
     defineField({
       name: "order",
       title: "Display order",
       type: "number",
       initialValue: 0,
+      description: "Controls both the numbering (01, 02...) and the order shown.",
     }),
   ],
   orderings: [
@@ -40,6 +48,6 @@ export const service = defineType({
     },
   ],
   preview: {
-    select: { title: "title", subtitle: "summary" },
+    select: { title: "title", subtitle: "summary", media: "imageOne" },
   },
 });

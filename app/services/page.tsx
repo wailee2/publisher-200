@@ -1,41 +1,19 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Image from "next/image";
 import { getAllServices } from "@/lib/queries";
+import { urlForImage } from "@/sanity/image";
+import type { Service } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Services — Adire Press",
-  description: "Editorial, design, and publishing services from Adire Press.",
+  title: "Services — The Odoh Publishers",
+  description: "Full-service publishing, editing, design, and consultation from The Odoh Publishers.",
 };
 
 const FALLBACK_SERVICES = [
-  {
-    _id: "1",
-    icon: "Ed.",
-    title: "Developmental & line editing",
-    summary:
-      "Structural feedback on plot, pacing, and argument, followed by sentence-level line editing. For manuscripts that are close but not yet ready to submit anywhere.",
-  },
-  {
-    _id: "2",
-    icon: "Pr.",
-    title: "Full-service publishing",
-    summary:
-      "Editing, cover and interior design, ISBN registration, print production, and distribution — for writers we bring onto the Adire Press list.",
-  },
-  {
-    _id: "3",
-    icon: "Ds.",
-    title: "Cover & interior design",
-    summary:
-      "Standalone design services for self-publishing authors who already have an editor and just need a cover and interior layout that hold up on a shelf.",
-  },
-  {
-    _id: "4",
-    icon: "Ct.",
-    title: "Manuscript consultation",
-    summary:
-      "A single paid session to assess a manuscript's readiness and map out what it needs before submission — to us or anyone else.",
-  },
+  { _id: "1", title: "Full-service publishing", summary: "Editing, cover and interior design, ISBN registration, print production, and distribution — for writers we bring onto the Odoh Publishers list." },
+  { _id: "2", title: "Developmental & line editing", summary: "Structural feedback on plot, pacing, and argument, followed by sentence-level line editing. For manuscripts that are close but not yet ready to submit anywhere." },
+  { _id: "3", title: "Cover & interior design", summary: "Standalone design services for self-publishing authors who already have an editor and just need a cover and interior layout that hold up on a shelf." },
+  { _id: "4", title: "Manuscript consultation", summary: "A single paid session to assess a manuscript's readiness and map out what it needs before submission — to us or anyone else." },
 ];
 
 export default async function ServicesPage() {
@@ -44,43 +22,44 @@ export default async function ServicesPage() {
 
   return (
     <div className="container-press py-16 md:py-24">
-      <p className="marginalia">What we do</p>
-      <h1 className="font-display text-4xl md:text-5xl text-ink max-w-2xl">
-        Editorial and publishing services
+      <p className="eyebrow">Services</p>
+      <h1 className="font-display text-4xl md:text-6xl font-bold text-text-primary max-w-2xl">
+        What we do best,
+        <br />
+        and then some.
       </h1>
-      <p className="font-body text-lg text-ink/70 mt-4 max-w-xl">
-        Whether you want full publication under the Adire Press name or a
-        standalone editing pass, here&apos;s how we can help.
-      </p>
 
-      <div className="mt-16 divide-y divide-ink/10 border-t border-b border-ink/10">
-        {list.map((service: any, i: number) => (
-          <div
-            key={service._id}
-            className="py-10 grid md:grid-cols-[80px_1fr] gap-4 md:gap-10 items-start"
-          >
-            <span className="font-display text-3xl text-gold">
-              {service.icon || String(i + 1).padStart(2, "0")}
-            </span>
-            <div>
-              <h2 className="font-display text-2xl text-ink mb-2">
+      <div className="mt-20 space-y-20">
+        {list.map((service: Service, i: number) => {
+          const img1 = service.imageOne
+            ? urlForImage(service.imageOne).width(700).height(500).url()
+            : null;
+          const img2 = service.imageTwo
+            ? urlForImage(service.imageTwo).width(700).height(500).url()
+            : null;
+
+          return (
+            <div key={service._id}>
+              <span className="font-body text-sm text-text-muted">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h2 className="font-display text-2xl md:text-4xl font-semibold text-text-primary mt-2 mb-3">
                 {service.title}
               </h2>
-              <p className="font-body text-ink/70 max-w-2xl leading-relaxed">
+              <p className="font-body text-text-secondary max-w-2xl mb-8">
                 {service.summary}
               </p>
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div className="aspect-[4/3] bg-bg-secondary rounded-xl overflow-hidden relative">
+                  {img1 && <Image src={img1} alt={`${service.title} — image 1`} fill className="object-cover" />}
+                </div>
+                <div className="aspect-[4/3] bg-bg-secondary rounded-xl overflow-hidden relative">
+                  {img2 && <Image src={img2} alt={`${service.title} — image 2`} fill className="object-cover" />}
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-16 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-        <p className="font-body text-ink/70">
-          Not sure which of these fits your manuscript?
-        </p>
-        <Link href="/contact" className="btn-primary">
-          Get in touch
-        </Link>
+          );
+        })}
       </div>
     </div>
   );

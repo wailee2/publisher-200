@@ -4,41 +4,60 @@ export async function getSiteSettings() {
   return client.fetch(`*[_type == "siteSettings"][0]`);
 }
 
-export async function getAllBooks() {
+// Portfolio
+export async function getAllPortfolioItems() {
   return client.fetch(
-    `*[_type == "book"] | order(publishedDate desc){
-      _id, title, slug, author, cover, genre, excerpt, price, featured
+    `*[_type == "portfolioItem"] | order(order asc){
+      _id, title, slug, cover, category, author, summary, externalLink
     }`
   );
 }
 
-export async function getFeaturedBooks() {
+export async function getFeaturedPortfolioItems(limit = 6) {
   return client.fetch(
-    `*[_type == "book" && featured == true] | order(publishedDate desc)[0...3]{
-      _id, title, slug, author, cover, excerpt
-    }`
+    `*[_type == "portfolioItem" && featured == true] | order(order asc)[0...$limit]{
+      _id, title, slug, cover, category
+    }`,
+    { limit }
   );
 }
 
-export async function getBookBySlug(slug: string) {
-  return client.fetch(
-    `*[_type == "book" && slug.current == $slug][0]`,
-    { slug }
-  );
+export async function getPortfolioItemBySlug(slug: string) {
+  return client.fetch(`*[_type == "portfolioItem" && slug.current == $slug][0]`, { slug });
 }
 
+// Services
 export async function getAllServices() {
   return client.fetch(
     `*[_type == "service"] | order(order asc){
-      _id, title, icon, summary
+      _id, title, summary, imageOne, imageTwo, order
     }`
   );
 }
 
+// Team
 export async function getTeamMembers() {
   return client.fetch(
     `*[_type == "teamMember"] | order(order asc){
       _id, name, role, photo, bio
+    }`
+  );
+}
+
+// Testimonials
+export async function getTestimonials() {
+  return client.fetch(
+    `*[_type == "testimonial"] | order(order asc){
+      _id, quote, authorName, authorRole, authorPhoto
+    }`
+  );
+}
+
+// FAQs
+export async function getFaqItems() {
+  return client.fetch(
+    `*[_type == "faqItem"] | order(order asc){
+      _id, question, answer
     }`
   );
 }

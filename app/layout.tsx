@@ -1,29 +1,20 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Sans  } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getSiteSettings } from "@/lib/queries";
 
-
-const fraunces = Fraunces({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  axes: ["opsz", "SOFT", "WONK"],
-  display: "swap",
-});
-
-const plexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-plex",
+  variable: "--font-inter",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Adire Press — Nigerian voices, bound to last",
+  title: "The Odoh Publishers",
   description:
-    "Adire Press is a Lagos-based publishing house working with Nigerian writers on fiction, poetry, and non-fiction that lasts.",
+    "The Odoh Publishers is a Nigerian publishing house offering full-service publishing, editing, design, and manuscript consultation for authors.",
 };
 
 export default async function RootLayout({
@@ -33,9 +24,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body
-        className={`${fraunces.variable} ${plexSans.variable} font-body bg-paper text-ink antialiased`}
-      >
+      <body className={`${inter.variable} font-body bg-bg text-text-primary antialiased`}>
         <Header settings={settings} />
         <main>{children}</main>
         <Footer settings={settings} />
