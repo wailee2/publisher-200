@@ -14,7 +14,7 @@
   --color-card-bg-alt: #FAFBFC;
 
   --color-text-primary: #101828;
-  --color-text-secondary: #475467;
+  --color-text-secondary: #3d4858;
   --color-text-muted: #656566;
   --color-text-disabled: #D0D5DD;
   --color-text-on-primary: #FFFFFF;
@@ -51,10 +51,16 @@
   --font-body: var(--font-inter), sans-serif;
   
   
-  --text-xsmall: clamp(13px, .65vw + 0.29rem, 27px);
-  --text-small: clamp(14px, .7vw + 0.3rem, 29.5px);
-  --text-medium: clamp(16px, .8vw + 0.38rem, 32px);
- 
+  --btext-xsmall: clamp(13px, .65vw + 0.29rem, 27px);
+  --btext-small: clamp(14px, .7vw + 0.3rem, 29.5px);
+  --btext-medium: clamp(16px, .8vw + 0.38rem, 32px);
+
+  --text-xsmall: 13px;
+  --text-small: 14px;
+  --text-medium: 16px;
+  --text-large: 18px;
+
+
 
   --text-bxsmall: clamp(11.5px, .67vw + 0.32rem, 27px);
 
@@ -75,7 +81,17 @@ body {
   font-size: var(--text-medium);
 }
 
+p{
+  text-wrap:pretty;
+  line-height: 140%;
+}
+
 @layer base {
+
+  :root, body {
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  }
+  
   html {
     scroll-behavior: smooth;
   }
@@ -88,13 +104,37 @@ body {
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     letter-spacing: -0.01em;
+    text-wrap: balance;
   }
 
   h1{
     font-size: 60px;
     font-weight: 700;
     line-height: 1;
-    letter-spacing: -0.015em;
+  }
+
+  h2{
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  h3{
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  h4{
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  p{
+    color: var(--color-text-secondary);
   }
 
   a:focus-visible,
@@ -116,6 +156,14 @@ body {
 }
 
 @layer components {
+  .page-py{
+    @apply space-y-[10em]
+  }
+
+  .container-press {
+    @apply mx-auto w-full px-[1.5em];
+  }
+
   .section-heading{
     @apply flex gap-2 items-center mt-2
   }
@@ -142,12 +190,10 @@ body {
     flex-shrink: 0;
   }
 
-  .container-press {
-    @apply mx-auto w-full px-[1.25em];
-  }
+  
 
   .btn-pill-primary {
-    @apply inline-flex items-center gap-3 rounded-full pl-6 pr-2 py-2 font-body text-sm font-medium transition-colors bg-primary text-text-on-primary hover:bg-primary-hover;
+    @apply inline-flex items-center gap-12 rounded-full pl-5 pr-2 py-2 transition-colors bg-primary text-text-on-primary hover:bg-primary-hover;
   }
   
   .btn-pill-primary .btn-pill-icon {
@@ -155,7 +201,7 @@ body {
   }
 
   .btn-pill-white {
-    @apply inline-flex items-center gap-12 rounded-full pl-5 pr-1 py-1  transition-colors bg-white text-text-primary hover:bg-bg-secondary;
+    @apply inline-flex items-center gap-12 rounded-full pl-5 pr-2 py-2 transition-colors bg-white text-text-primary hover:bg-bg-secondary;
   }
   
   .btn-pill-white .btn-pill-icon {

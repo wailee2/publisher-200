@@ -73,9 +73,9 @@ export default async function HomePage() {
   ];
 
   return (
-    <>
+    <div className=" page-py">
       {/* HERO */}
-      <section className="relative min-h-[101vh] 2xl:min-h-0 2xl:h-[80vh] flex justify-betweens items- overflow-hidden">
+      <section className="relative min-h-[110vh] flex justify-betweens items- overflow-hidden">
         {heroUrl ? (
           <Image
             src={heroUrl}
@@ -89,7 +89,7 @@ export default async function HomePage() {
         )}
         <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/50 to-black/70" />
 
-        <div className="container-press relative z-10 mb-15 pt-[8em] w-full">
+        <div className="container-press relative z-10 mb-[4em] pt-[8em] w-full">
           <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
             <div className="col-span-2">
               <div className="section-heading  ">
@@ -101,13 +101,13 @@ export default async function HomePage() {
             </div>
 
             <div className="col-start-4 col-span-6 space-y-8 ">
-              <h1 className=" text-4xld dmd:text-6xl text-white sleading-[1.05] ">
+              <h1 className="text-white!">
                 {settings?.heroHeadline ||
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+                  "We publish the books Nigerian readers actually pick up."}
               </h1>
 
               <div className="space-y-6">
-                <p className="font-body text-white/80  max-w-md ">
+                <p className="font-body text-white/80  max-w-[60%] ">
                   {settings?.heroSubtext ||
                     "We publish fiction, poetry, and non-fiction from writers who have something to say — and edit it like it matters."}
                 </p>
@@ -118,57 +118,79 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              <div className="absolute bottom-0 flex items-center gap-2 mt-16b text-white/90 text-small text-sm ">
+              <div className="absolute bottom-0 font-medium flex items-center gap-2 mt-16b text-white/90 text-small text-small ">
                 <span>{settings?.heroBadgeText || "Trusted by 500+ Authors Worldwide"}</span>
-                <span className="text-accent">★</span>
+                <span className="text-accent text-[22px] absolute -right-6 -top-4">★</span>
               </div>
             </div>
           </div>
-          
-          
-          
-
-          
         </div>
       </section>
 
       {/* WHY CHOOSE US */}
-      <section className="container-press py-20 md:py-28">
-        <p className="eyebrow">Why choose us?</p>
-        <h2 className="font-display text-3xl md:text-5xl font-bold text-text-primary max-w-2xl mb-14">
-          {settings?.whyChooseUsHeadline ||
-            "We combine bold creativity with strategy to drive results."}
-        </h2>
+      <section className="container-press space-y-[5em]">
+        <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+          <div className="col-span-2">
+            <div className="section-heading  ">
+              <div className="section-heading-dot"/>
+              <span className=" section-heading-text">
+                Why choose us?
+              </span>
+            </div>
+          </div>
+
+          <div className="col-start-4 col-span-7 ">
+            <h2 className="">
+              {settings?.whyChooseUsHeadline ||
+                "We combine bold creativity with strategy to drive results."}
+            </h2>
+          </div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-10">
           {pillars.map((pillar: Pillar, i: number) => (
-            <div key={i}>
-              <div className="w-12 h-12 rounded-xl bg-primary mb-5" />
-              <h3 className="font-display text-xl font-semibold text-text-primary mb-2">
-                {pillar.title}
-              </h3>
-              <p className="font-body text-sm text-text-secondary leading-relaxed">
-                {pillar.description}
-              </p>
+            <div key={i} className="flex gap-6">
+              <div className="w-fit h-16 rounded-xl bg-primary " >dddddbb</div>
+              <div className="flex flex-col gap-6 ">
+                <h4 className="  ">
+                  {pillar.title}
+                </h4>
+                <p className="font-body  text-text-secondary max-w-[80%]">
+                  {pillar.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
       {/* SERVICES TEASER */}
-      <section className="container-press py-20 md:py-28 border-t border-border">
-        <p className="eyebrow">Services</p>
-        <h2 className="font-display text-3xl md:text-5xl font-bold text-text-primary mb-6">
-          What we do best,
-          <br />
-          and then some.
-        </h2>
-        <Link href="/services" className="btn-pill-primary mb-16">
-          View all services
-          <span className="btn-pill-icon">↗</span>
-        </Link>
+      <section className="container-press space-y-[5em]">
+        <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+          <div className="col-span-2">
+            <div className="section-heading  ">
+              <div className="section-heading-dot"/>
+              <span className=" section-heading-text">
+                Services
+              </span>
+            </div>
+          </div>
 
-        <div className="divide-y divide-border">
+          <div className="col-start-4 col-span-7 space-y-6 ">
+            <h2 className="">
+              What we do best,
+              <br />
+              and then some.
+            </h2>
+
+            <Link href="/services" className="btn-pill-primary">
+              Explore our services
+              <span className="btn-pill-icon">↗</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="space-y-[4.5em]">
           {(services.length > 0
             ? services
             : [
@@ -184,23 +206,29 @@ export default async function HomePage() {
             return (
               <div
                 key={service._id}
-                className="py-8 grid md:grid-cols-[60px_1fr_auto] gap-6 items-center"
+                className="flex gap-[1.25em] items-start"
               >
-                <span className="font-body text-sm text-text-muted">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="font-display text-xl md:text-2xl font-semibold text-text-primary mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="font-body text-sm text-text-secondary max-w-lg">
+                <div className="w-[50%] flex gap-[3em] ">
+                  <span className="section-heading-text mt-.5">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="max-w-[5f0%]">
+                      {service.title}
+                    </h3>
+                    
+                  </div>
+                </div>
+
+                <div className="w-[60%] flex gap-[3em] ">
+                  <div className="hidden md:block w-65  aspect-6/4 rounded-2xl overflow-hidden bg-bg-secondary relative shrink-0">
+                    {imgUrl && (
+                      <Image src={imgUrl} alt={service.title} fill className="object-cover" />
+                    )}
+                  </div>
+                  <p className=" max-w-[40%]d">
                     {service.summary}
                   </p>
-                </div>
-                <div className="hidden md:block w-32 h-24 rounded-lg overflow-hidden bg-bg-secondary relative flex-shrink-0">
-                  {imgUrl && (
-                    <Image src={imgUrl} alt={service.title} fill className="object-cover" />
-                  )}
                 </div>
               </div>
             );
@@ -209,20 +237,33 @@ export default async function HomePage() {
       </section>
 
       {/* ABOUT TEASER */}
-      <section className="container-press py-20 md:py-28 border-t border-border">
-        <p className="eyebrow">About us</p>
-        <h2 className="font-display text-3xl md:text-5xl font-bold text-text-primary max-w-2xl mb-8">
-          {settings?.aboutHeadline ||
-            "The Odoh Publisher was founded in Nigeria by a group of editors and designers who were tired of watching strong manuscripts stall."}
-        </h2>
-        <Link href="/about" className="btn-pill-primary">
-          Learn more about our team
-          <span className="btn-pill-icon">↗</span>
-        </Link>
+      <section className="container-press ">
+        <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+          <div className="col-span-2">
+            <div className="section-heading  ">
+              <div className="section-heading-dot"/>
+              <span className=" section-heading-text">
+                About us
+              </span>
+            </div>
+          </div>
+
+          <div className="col-start-4 col-span-full space-y-6  ">
+            <h2 className="text-pretty">
+              {settings?.aboutHeadline ||
+                "The Odoh Publisher was founded in Nigeria by a group of editors and designers who were tired of watching strong manuscripts stall."}
+            </h2>
+
+            <Link href="/about" className="btn-pill-primary">
+              Learn more about our team
+              <span className="btn-pill-icon">↗</span>
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* PORTFOLIO */}
-      <section className="container-press py-20 md:py-28 border-t border-border">
+      <section className="container-press ">
         <p className="eyebrow">Our portfolio</p>
         <h2 className="font-display text-3xl md:text-5xl font-bold text-text-primary mb-6">
           Work that speaks
@@ -250,7 +291,7 @@ export default async function HomePage() {
       </section>
 
       {/* PROCESS */}
-      <section className="container-press py-20 md:py-28 border-t border-border">
+      <section className="container-press ">
         <p className="eyebrow">Our process</p>
         <h2 className="font-display text-3xl md:text-5xl font-bold text-text-primary mb-6">
           {settings?.processHeadline || "A simple yet powerful and efficient process."}
@@ -280,7 +321,7 @@ export default async function HomePage() {
 
       {/* TESTIMONIALS */}
       {testimonials.length > 0 && (
-        <section className="container-press py-20 md:py-28 border-t border-border">
+        <section className="container-press ">
           <p className="eyebrow">Testimonial</p>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-text-primary mb-6">
             Don&apos;t take our word for it.
@@ -324,7 +365,7 @@ export default async function HomePage() {
 
       {/* FAQ */}
       {faqs.length > 0 && (
-        <section className="container-press py-20 md:py-28 border-t border-border">
+        <section className="container-press ">
           <p className="eyebrow">FAQs</p>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-text-primary mb-14">
             Got questions?
@@ -347,6 +388,6 @@ export default async function HomePage() {
           </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }

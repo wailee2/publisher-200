@@ -23,8 +23,8 @@ export default async function RootLayout({
   const settings = await getSiteSettings().catch(() => null);
 
   return (
-    <html lang="en">
-      <body className={`${inter.variable} font-body bg-bg text-text-primary antialiased`}>
+    <html lang="en" className={inter.variable}>
+      <body className=' font-body bg-bg text-text-primary antialiased max-w-375 mx-auto '>
         <Header settings={settings} />
         <main>{children}</main>
         <Footer settings={settings} />
