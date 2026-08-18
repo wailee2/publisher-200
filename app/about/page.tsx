@@ -21,7 +21,7 @@ export default async function AboutPage() {
     : null;
 
   return (
-    <div className="container-press py-16 md:py-24">
+    <div className="container-press py-16 md:py-24  ">
       <p className="eyebrow">About us</p>
       <h1 className="font-display text-4xl md:text-6xl font-bold text-text-primary max-w-2xl mb-12">
         {settings?.aboutHeadline || "The team behind the work that works."}

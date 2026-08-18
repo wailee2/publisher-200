@@ -1,11 +1,5 @@
 @import "tailwindcss";
 
-/*
-  DESIGN TOKENS — The Odoh Publishers
-  ------------------------------------
-  Source of truth: Figma design system (blue brand, #0044F1).
-*/
-
 :root {
   --color-primary: #0044F1;
   --color-primary-hover: #003ACD;
@@ -53,14 +47,32 @@
   --color-border-hover: var(--color-border-hover);
   --color-border-strong: var(--color-border-strong);
 
-  --font-display: var(--font-inter), sans-serif;
+  --font-display: var(--font-inter);
   --font-body: var(--font-inter), sans-serif;
+  
+  
+  --text-xsmall: clamp(13px, .65vw + 0.29rem, 27px);
+  --text-small: clamp(14px, .7vw + 0.3rem, 29.5px);
+  --text-medium: clamp(16px, .8vw + 0.38rem, 32px);
+ 
+
+  --text-bxsmall: clamp(11.5px, .67vw + 0.32rem, 27px);
+
+
+
+  --text-small: clamp(14px, .72vw + 0.34rem, 25px);
+
+  
+  
+  --text-large: clamp(29px, 1.62vw + 1.1rem, 68px);
+  --text-2xlarge: clamp(29px, 1.62vw + 1.1rem, 68px);
 }
 
 body {
   background: var(--color-bg);
   color: var(--color-text-primary);
   font-family: var(--font-body);
+  font-size: var(--text-medium);
 }
 
 @layer base {
@@ -76,6 +88,13 @@ body {
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     letter-spacing: -0.01em;
+  }
+
+  h1{
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.015em;
   }
 
   a:focus-visible,
@@ -97,6 +116,18 @@ body {
 }
 
 @layer components {
+  .section-heading{
+    @apply flex gap-2 items-center mt-2
+  }
+
+  .section-heading-dot{
+    @apply bg-primary size-[.7em] rounded-full
+  }
+
+  .section-heading-text{
+    @apply text-xsmall tracking-[0.14em] font-semibold uppercase text-text-primary
+  }
+
   .eyebrow {
     @apply inline-flex items-center gap-2 text-text-primary font-body text-xs font-semibold uppercase tracking-[0.14em] mb-4;
   }
@@ -112,7 +143,7 @@ body {
   }
 
   .container-press {
-    @apply mx-auto w-full max-w-7xl px-6 md:px-10;
+    @apply mx-auto w-full px-[1.25em];
   }
 
   .btn-pill-primary {
@@ -124,7 +155,7 @@ body {
   }
 
   .btn-pill-white {
-    @apply inline-flex items-center gap-3 rounded-full pl-6 pr-2 py-2 font-body text-sm font-medium transition-colors bg-white text-text-primary hover:bg-bg-secondary;
+    @apply inline-flex items-center gap-12 rounded-full pl-5 pr-1 py-1  transition-colors bg-white text-text-primary hover:bg-bg-secondary;
   }
   
   .btn-pill-white .btn-pill-icon {
@@ -132,15 +163,15 @@ body {
   }
 
   .btn-pill-icon {
-    @apply flex items-center justify-center w-8 h-8 rounded-full shrink-0;
+    @apply flex items-center justify-center size-10 rounded-full shrink-0;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-primary text-text-on-primary px-6 py-3 rounded-full font-body text-sm font-medium transition-colors hover:bg-primary-hover;
+    @apply inline-flex items-center justify-center gap-2 bg-primary text-text-on-primary px-5 py-2 rounded-full font-body transition-colors hover:bg-primary-hover;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 border border-border text-text-primary px-6 py-3 rounded-full font-body text-sm font-medium transition-colors;
+    @apply inline-flex items-center justify-center gap-2 border border-border text-text-primary px-5 py-2 rounded-full font-body transition-colors;
   }
   
   .btn-secondary:hover {

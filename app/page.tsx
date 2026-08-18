@@ -75,7 +75,7 @@ export default async function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative h-[85vh] min-h-[600px] flex items-end overflow-hidden">
+      <section className="relative min-h-[101vh] 2xl:min-h-0 2xl:h-[80vh] flex justify-betweens items- overflow-hidden">
         {heroUrl ? (
           <Image
             src={heroUrl}
@@ -87,29 +87,48 @@ export default async function HomePage() {
         ) : (
           <div className="absolute inset-0 bg-secondary" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/50" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/50 to-black/70" />
 
-        <div className="container-press relative z-10 pb-20 pt-32 w-full">
-          <p className="eyebrow !text-white/90">
-            {settings?.heroEyebrow || "Meet Odoh"}
-          </p>
-          <h1 className="font-display text-4xl md:text-6xl font-bold text-white leading-[1.05] max-w-2xl">
-            {settings?.heroHeadline ||
-              "We publish the books Nigerian readers actually pick up."}
-          </h1>
-          <p className="font-body text-white/80 mt-6 max-w-md text-lg">
-            {settings?.heroSubtext ||
-              "We publish fiction, poetry, and non-fiction from writers who have something to say — and edit it like it matters."}
-          </p>
-          <Link href="/services" className="btn-pill-white mt-8">
-            Explore our services
-            <span className="btn-pill-icon">↗</span>
-          </Link>
+        <div className="container-press relative z-10 mb-15 pt-[8em] w-full">
+          <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+            <div className="col-span-2">
+              <div className="section-heading  ">
+                <div className="section-heading-dot"/>
+                <span className=" section-heading-text text-white! ">
+                  {settings?.heroEyebrow || "Meet Odoh"}
+                </span>
+              </div>
+            </div>
 
-          <div className="flex items-center gap-2 mt-16 text-white/90 font-body text-sm">
-            <span>{settings?.heroBadgeText || "Trusted by 500+ Authors Worldwide"}</span>
-            <span className="text-accent">★</span>
+            <div className="col-start-4 col-span-6 space-y-8 ">
+              <h1 className=" text-4xld dmd:text-6xl text-white sleading-[1.05] ">
+                {settings?.heroHeadline ||
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+              </h1>
+
+              <div className="space-y-6">
+                <p className="font-body text-white/80  max-w-md ">
+                  {settings?.heroSubtext ||
+                    "We publish fiction, poetry, and non-fiction from writers who have something to say — and edit it like it matters."}
+                </p>
+
+                <Link href="/services" className="btn-pill-white">
+                  Explore our services
+                  <span className="btn-pill-icon">↗</span>
+                </Link>
+              </div>
+
+              <div className="absolute bottom-0 flex items-center gap-2 mt-16b text-white/90 text-small text-sm ">
+                <span>{settings?.heroBadgeText || "Trusted by 500+ Authors Worldwide"}</span>
+                <span className="text-accent">★</span>
+              </div>
+            </div>
           </div>
+          
+          
+          
+
+          
         </div>
       </section>
 
