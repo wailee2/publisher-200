@@ -22,18 +22,29 @@ export default function FaqAccordion({ items }: { items: FaqItem[] }) {
               className="w-full flex items-center justify-between gap-6 py-6 text-left"
               aria-expanded={isOpen}
             >
-              <span className="font-body text-base font-medium text-text-primary">
+              <span className=" font-medium text-large text-text-primary">
                 {item.question}
               </span>
-              <span className="text-xl text-text-primary flex-shrink-0">
+              <span
+                className={`text-2xl text-text-primary shrink-0 inline-block
+                            transition-transform duration-500 ease-out
+                            ${isOpen ? "rotate-180" : "rotate-0"}`}
+              >
                 {isOpen ? "−" : "+"}
               </span>
             </button>
-            {isOpen && (
-              <p className="font-body text-sm text-text-secondary pb-6 max-w-2xl">
-                {item.answer}
-              </p>
-            )}
+
+            {/* height animator: 0fr -> 1fr smoothly expands/collapses the answer */}
+            <div
+              className={`grid transition-[grid-template-rows] duration-500 ease-out 
+                          ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+            >
+              <div className="overflow-hidden min-h-0">
+                <p className=" text-text-secondary pb-8 max-w-xl">
+                  {item.answer}
+                </p>
+              </div>
+            </div>
           </div>
         );
       })}

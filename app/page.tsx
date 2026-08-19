@@ -10,7 +10,7 @@ import {
 import { urlForImage } from "@/sanity/image";
 import PortfolioCard from "@/components/PortfolioCard";
 import FaqAccordion from "@/components/FaqAccordion";
-import type { Service, PortfolioItem, Testimonial, Pillar, ProcessStep } from "@/lib/types";
+import type { Service, PortfolioItem, Pillar, ProcessStep } from "@/lib/types";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 
 export default async function HomePage() {
@@ -68,7 +68,7 @@ export default async function HomePage() {
       ];
 
   const processStyles = [
-    "bg-bg-secondary text-text-primary",
+    "bg-card-bg text-text-primary",
     "bg-primary text-text-on-primary",
     "bg-secondary text-text-on-primary",
   ];
@@ -399,23 +399,36 @@ export default async function HomePage() {
       {/* FAQ */}
       {faqs.length > 0 && (
         <section className="container-press ">
-          <p className="eyebrow">FAQs</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-text-primary mb-14">
-            Got questions?
-            <br />
-            We&apos;ve got answers.
-          </h2>
-          <FaqAccordion items={faqs} />
+          <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+            <div className="col-span-2">
+              <div className="section-heading  ">
+                <div className="section-heading-dot"/>
+                <span className=" section-heading-text">
+                  FAQs
+                </span>
+              </div>
+            </div>
+
+            <div className="col-start-4 col-span-full space-y-[1.7em]  ">
+              <h2 className="">
+                Got questions?
+                <br />
+                We&apos;ve got answers.
+              </h2>
+              
+              <FaqAccordion items={faqs} />
+            </div>
+          </div>
         </section>
       )}
 
       {/* CTA BANNER */}
       <section className="container-press pb-20 md:pb-28">
-        <div className="rounded-3xl bg-gradient-to-br from-primary via-primary to-primary-active px-8 py-20 md:py-28 text-center">
+        <div className="rounded-3xl bg-[linear-gradient(to_bottom_right,#00278B_0%,#0036BE_35%,#00278B_73%,#0044F1_100%)] px-8 py-20 md:py-28 text-center">
           <h2 className="font-display text-3xl md:text-5xl font-bold text-white max-w-xl mx-auto mb-8">
             {settings?.ctaHeadline || "Join us in creating and publishing art"}
           </h2>
-          <Link href="/contact" className="btn-pill-white !inline-flex">
+          <Link href="/contact" className="btn-pill-white inline-flex">
             {settings?.ctaButtonText || "Let us collaborate"}
             <span className="btn-pill-icon">↗</span>
           </Link>

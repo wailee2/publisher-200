@@ -62,7 +62,7 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
       const rotate = Math.sign(delta) * t * 10;
       const scale = 1 - t * 0.12;
       const translateY = t * 18;
-      const opacity = 1 - t * 0.35;
+      const opacity = 1 - t * 0.3;
 
       card.style.transform = `rotate(${rotate}deg) scale(${scale}) translateY(${translateY}px)`;
       card.style.opacity = String(opacity);
@@ -161,7 +161,7 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
         style={{ paddingLeft: sidePad, paddingRight: sidePad, paddingTop: "1.5rem", paddingBottom: "2.5rem" }}
         className="flex flex-nowrap gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth cursor-grab select-none
                    w-full min-w-0 touch-pan-x
-                   [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                   [-ms-overflow-style:none] scrollbar-width:none [&::-webkit-scrollbar]:hidden"
       >
         {testimonials.map((t: Testimonial, i: number) => {
           const photoUrl = t.authorPhoto
