@@ -23,7 +23,7 @@ export default function PortfolioCard({
 
   return (
     <Link href={`/portfolio/${item.slug.current}`} className="group block">
-      <div className="aspect-[4/5] bg-bg-secondary overflow-hidden mb-4 relative rounded-lg">
+      <div className="aspect-square bg-bg-secondary overflow-hidden mb-4 relative rounded-2xl">
         {coverUrl ? (
           <Image
             src={coverUrl}
@@ -33,17 +33,17 @@ export default function PortfolioCard({
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-text-muted text-xs font-body px-4 text-center">
+          <div className="absolute inset-0 flex items-center justify-center text-text-muted text-small px-4 text-center">
             Add a cover image in the studio
           </div>
         )}
       </div>
       <div className="flex items-center justify-between">
-        <div>
-          <span className="font-body text-xs text-text-muted">
+        <div className="flex items-center gap-4">
+          <span className="section-heading-text ">
             {String(index + 1).padStart(2, "0")}
           </span>{" "}
-          <span className="font-body text-sm font-semibold text-text-primary">
+          <span className="capitalize text-large font-semibold ">
             {item.title}
           </span>
         </div>

@@ -11,6 +11,7 @@ import { urlForImage } from "@/sanity/image";
 import PortfolioCard from "@/components/PortfolioCard";
 import FaqAccordion from "@/components/FaqAccordion";
 import type { Service, PortfolioItem, Testimonial, Pillar, ProcessStep } from "@/lib/types";
+import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 
 export default async function HomePage() {
   const [settings, portfolioItems, services, testimonials, faqs] =
@@ -128,7 +129,7 @@ export default async function HomePage() {
       </section>
 
       {/* WHY CHOOSE US */}
-      <section className="container-press space-y-[5em]">
+      <section className="container-press section-py">
         <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
           <div className="col-span-2">
             <div className="section-heading  ">
@@ -147,7 +148,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {pillars.map((pillar: Pillar, i: number) => (
             <div key={i} className="flex gap-6">
               <div className="w-fit h-16 rounded-xl bg-primary " >dddddbb</div>
@@ -165,8 +166,8 @@ export default async function HomePage() {
       </section>
 
       {/* SERVICES TEASER */}
-      <section className="container-press space-y-[5em]">
-        <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+      <section className=" section-py">
+        <div className="container-press grid grid-cols-12 gap-[1.25em] items-start  ">
           <div className="col-span-2">
             <div className="section-heading  ">
               <div className="section-heading-dot"/>
@@ -190,9 +191,9 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="space-y-[4.5em]">
+        <div className="">
           {(services.length > 0
-            ? services
+            ? services.slice(0, 4)
             : [
                 { _id: "1", title: "Full-service publishing", summary: "Editing, cover and interior design, ISBN registration, print production, and distribution — for writers we bring onto the Odoh Publishers list." },
                 { _id: "2", title: "Developmental & line editing", summary: "Structural feedback on plot, pacing, and argument, followed by sentence-level line editing." },
@@ -206,27 +207,46 @@ export default async function HomePage() {
             return (
               <div
                 key={service._id}
-                className="flex gap-[1.25em] items-start"
+                className=" container-press cursor-pointer border-border border-t py-[2.5em] group flex gap-[1.25em] items-start transition-colors duration-500 ease-out hover:bg-[#f1f5ff]/50 "
               >
-                <div className="w-[50%] flex gap-[3em] ">
-                  <span className="section-heading-text mt-.5">
+                <div className="w-[50%] flex gap-[3em]">
+                  <span className="section-heading-text">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="max-w-[5f0%]">
+                    <h3 className="transition-colors duration-500 ease-out group-hover:text-primary">
                       {service.title}
                     </h3>
-                    
                   </div>
                 </div>
 
-                <div className="w-[60%] flex gap-[3em] ">
-                  <div className="hidden md:block w-65  aspect-6/4 rounded-2xl overflow-hidden bg-bg-secondary relative shrink-0">
-                    {imgUrl && (
-                      <Image src={imgUrl} alt={service.title} fill className="object-cover" />
-                    )}
+                <div className="w-[60%] flex gap-[3em]">
+                  {/* height animator: 0fr -> 1fr smoothly expands the row */}
+                  <div
+                    className="hidden md:grid w-65 shrink-0
+                              grid-rows-[0fr] group-hover:grid-rows-[1fr]
+                              transition-[grid-template-rows] duration-700 ease-out"
+                  >
+                    <div className="overflow-hidden min-h-0">
+                      {/* scale/fade animator: image grows into view */}
+                      <div
+                        className="aspect-6/4 rounded-2xl overflow-hidden bg-bg-secondary relative
+                                  scale-0 opacity-0 origin-bottom-right
+                                  transition-all duration-700 ease-out
+                                  group-hover:scale-100 group-hover:opacity-100"
+                      >
+                        {imgUrl && (
+                          <Image
+                            src={imgUrl}
+                            alt={service.title}
+                            fill
+                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                          />
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  <p className=" max-w-[40%]d">
+                  <p className="">
                     {service.summary}
                   </p>
                 </div>
@@ -237,7 +257,7 @@ export default async function HomePage() {
       </section>
 
       {/* ABOUT TEASER */}
-      <section className="container-press ">
+      <section className="container-press  ">
         <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
           <div className="col-span-2">
             <div className="section-heading  ">
@@ -263,26 +283,39 @@ export default async function HomePage() {
       </section>
 
       {/* PORTFOLIO */}
-      <section className="container-press ">
-        <p className="eyebrow">Our portfolio</p>
-        <h2 className="font-display text-3xl md:text-5xl font-bold text-text-primary mb-6">
-          Work that speaks
-          <br />
-          louder than pitches.
-        </h2>
-        <Link href="/portfolio" className="btn-pill-primary mb-14">
-          Explore more
-          <span className="btn-pill-icon">↗</span>
-        </Link>
+      <section className="container-press section-py ">
+        <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+          <div className="col-span-2">
+            <div className="section-heading  ">
+              <div className="section-heading-dot"/>
+              <span className=" section-heading-text">
+                Our portfolio
+              </span>
+            </div>
+          </div>
+
+          <div className="col-start-4 col-span-full space-y-6  ">
+            <h2 className="">
+              Work that speaks
+              <br />
+              louder than pitches.
+            </h2>
+
+            <Link href="/portfolio" className="btn-pill-primary">
+              Explore more
+              <span className="btn-pill-icon">↗</span>
+            </Link>
+          </div>
+        </div>
 
         {portfolioItems.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[1.5em]">
             {portfolioItems.map((item: PortfolioItem, i: number) => (
               <PortfolioCard key={item._id} item={item} index={i} />
             ))}
           </div>
         ) : (
-          <p className="font-body text-text-secondary">
+          <p className="text-text-secondary">
             No portfolio items marked as featured yet — add some in the
             studio at <code className="text-primary">/studio</code> and
             toggle &ldquo;Feature on homepage&rdquo;.
@@ -291,28 +324,41 @@ export default async function HomePage() {
       </section>
 
       {/* PROCESS */}
-      <section className="container-press ">
-        <p className="eyebrow">Our process</p>
-        <h2 className="font-display text-3xl md:text-5xl font-bold text-text-primary mb-6">
-          {settings?.processHeadline || "A simple yet powerful and efficient process."}
-        </h2>
-        <Link href="/contact" className="btn-pill-primary mb-14">
-          Get started
-          <span className="btn-pill-icon">↗</span>
-        </Link>
+      <section className="container-press section-py ">
+        <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+          <div className="col-span-2">
+            <div className="section-heading  ">
+              <div className="section-heading-dot"/>
+              <span className=" section-heading-text">
+                Our process
+              </span>
+            </div>
+          </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+          <div className="col-start-4 col-span-full space-y-6  ">
+            <h2 className="">
+              {settings?.processHeadline || "A simple yet powerful and efficient process."}
+            </h2>
+
+            <Link href="/contact" className="btn-pill-primary">
+              Get started
+              <span className="btn-pill-icon">↗</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="grid items-center justify-center sm:grid-cols-2 lg:grid-cols-3 gap-[1.25em]">
           {processSteps.map((step: ProcessStep, i: number) => (
             <div
               key={i}
-              className={`${processStyles[i % 3]} rounded-2xl p-10 min-h-[280px] flex flex-col justify-between`}
+              className={`${processStyles[i % 3]} rounded-2xl px-8 pt-4 pb-8 lg:px-10  lg:pt-10 lg:pb-17  min-h-70  flex flex-col items-center justify-between`}
             >
-              <span className="font-display text-5xl font-bold">
+              <span className="font-display  text-[50px] lg:text-[80px] font-semibold">
                 {String(i + 1).padStart(2, "0")}.
               </span>
               <div>
-                <h3 className="font-display text-xl font-semibold mb-2">{step.title}</h3>
-                <p className="font-body text-sm opacity-80">{step.description}</p>
+                <h3 className="text-center text-[30px] lg:text-[40px] font-medium mb-4 lg:mb-5">{step.title}</h3>
+                <p className=" text-current">{step.description}</p>
               </div>
             </div>
           ))}
@@ -321,45 +367,32 @@ export default async function HomePage() {
 
       {/* TESTIMONIALS */}
       {testimonials.length > 0 && (
-        <section className="container-press ">
-          <p className="eyebrow">Testimonial</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-text-primary mb-6">
-            Don&apos;t take our word for it.
-            <br />
-            Hear from our authors.
-          </h2>
-          <Link href="/contact" className="btn-pill-primary mb-14">
-            Get in touch
-            <span className="btn-pill-icon">↗</span>
-          </Link>
+        <section className="container-press section-py">
+          <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+            <div className="col-span-2">
+              <div className="section-heading  ">
+                <div className="section-heading-dot"/>
+                <span className=" section-heading-text">
+                  Testimonial
+                </span>
+              </div>
+            </div>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
-            {testimonials.map((t: Testimonial) => {
-              const photoUrl = t.authorPhoto
-                ? urlForImage(t.authorPhoto).width(80).height(80).url()
-                : null;
-              return (
-                <div key={t._id} className="bg-bg-secondary rounded-xl p-6 flex flex-col justify-between min-h-[260px]">
-                  <p className="font-body text-sm text-text-primary leading-relaxed">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <div className="flex items-center gap-3 mt-6">
-                    <div className="w-9 h-9 rounded-full bg-bg overflow-hidden relative flex-shrink-0">
-                      {photoUrl && (
-                        <Image src={photoUrl} alt={t.authorName} fill className="object-cover" />
-                      )}
-                    </div>
-                    <div>
-                      <p className="font-body text-sm font-semibold text-text-primary">{t.authorName}</p>
-                      {t.authorRole && (
-                        <p className="font-body text-xs text-text-muted">{t.authorRole}</p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            <div className="col-start-4 col-span-full space-y-6  ">
+              <h2 className="">
+                Don&apos;t take our word for it.
+                <br />
+                Hear from our authors.
+              </h2>
+
+              <Link href="/contact" className="btn-pill-primary">
+                Get in touch
+                <span className="btn-pill-icon">↗</span>
+              </Link>
+            </div>
           </div>
+
+          <TestimonialsCarousel testimonials={testimonials} />
         </section>
       )}
 
