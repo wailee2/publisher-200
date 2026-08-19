@@ -77,23 +77,31 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
   }, [updateEdges, applyTilt]);
 
   useEffect(() => {
+  const el = scrollRef.current;
+  if (!el) return;
+
+  // defer initial measurement to next frame — avoids calling setState
+  // synchronously during the effect's commit phase
+  const initId = requestAnimationFrame(() => {
     updateEdges();
     updateSidePad();
     applyTilt();
-    const el = scrollRef.current;
-    if (!el) return;
-    el.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", updateEdges);
-    window.addEventListener("resize", updateSidePad);
-    window.addEventListener("resize", applyTilt);
-    return () => {
-      el.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", updateEdges);
-      window.removeEventListener("resize", updateSidePad);
-      window.removeEventListener("resize", applyTilt);
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-    };
-  }, [onScroll, updateEdges, updateSidePad, applyTilt, testimonials]);
+  });
+
+  el.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", updateEdges);
+  window.addEventListener("resize", updateSidePad);
+  window.addEventListener("resize", applyTilt);
+
+  return () => {
+    cancelAnimationFrame(initId);
+    el.removeEventListener("scroll", onScroll);
+    window.removeEventListener("resize", updateEdges);
+    window.removeEventListener("resize", updateSidePad);
+    window.removeEventListener("resize", applyTilt);
+    if (rafId.current) cancelAnimationFrame(rafId.current);
+  };
+}, [onScroll, updateEdges, updateSidePad, applyTilt, testimonials]);
 
   const scrollByCard = (direction: "left" | "right") => {
     const el = scrollRef.current;
