@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 import { getSiteSettings, getTeamMembers } from "@/lib/queries";
 import { urlForImage } from "@/sanity/image";
@@ -21,33 +20,46 @@ export default async function AboutPage() {
     : null;
 
   return (
-    <div className="container-press py-16 md:py-24  ">
-      <p className="eyebrow">About us</p>
-      <h1 className="font-display text-4xl md:text-6xl font-bold text-text-primary max-w-2xl mb-12">
-        {settings?.aboutHeadline || "The team behind the work that works."}
-      </h1>
+    
+    <section className="container-press section-space-y page-space-y pt-[6em] md:pt-[8em]">
+      <div className="container-layout  ">
+        <div className="col-span-2">
+          <p className="eyebrow">About us</p>
+        </div>
 
-      <div className="aspect-video bg-bg-secondary rounded-2xl overflow-hidden relative mb-12">
+        <div className="col-start-4 col-span-7 ">
+          <h1 className="">
+            {settings?.aboutHeadline || "The team behind the work that works."}
+          </h1>
+        </div>
+      </div>
+
+      <div className="aspect-video bg-bg-secondary rounded-2xl overflow-hidden relative ">
         {aboutImgUrl ? (
-          <Image src={aboutImgUrl} alt="The Odoh Publishers team" fill className="object-cover" />
+          <Image 
+            src={aboutImgUrl} 
+            alt="The Odoh Publishers team" 
+            fill 
+            className="object-cover" 
+          />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-text-muted text-sm font-body px-8 text-center">
-            Add a story image in Site Settings → About Page → the studio at /studio
+          <div className="absolute inset-0 flex items-center justify-center text-text-muted text-small px-8 text-center">
+            Story image not available
           </div>
         )}
       </div>
 
-      <div className="max-w-2xl">
-        <p className="font-display text-2xl md:text-3xl font-semibold text-text-primary leading-snug">
+      <div className=" lg:grid grid-cols-12 gap-[1.25em]">
+        <h2 className="col-span-7">
           {settings?.aboutStory ||
-            "The Odoh Publishers was founded in Nigeria by a group of editors and designers who were tired of watching strong manuscripts stall. We take on a small list of titles each year because we'd rather do a few books well than a lot of books quickly — real editing, honest cover design, and distribution that actually reaches readers."}
-        </p>
+            "The Odoh Publishers was founded in Nigeria by a group of editors and designers who were tired of watching strong manuscripts stall."}
+        </h2>
       </div>
 
       {team.length > 0 && (
-        <div className="mt-24">
+        <div className="">
           <p className="eyebrow">Our team</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mt-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-[1.25em] mt-6">
             {team.map((member: TeamMember) => {
               const photoUrl = member.photo
                 ? urlForImage(member.photo).width(500).height(600).url()
@@ -59,9 +71,9 @@ export default async function AboutPage() {
                       <Image src={photoUrl} alt={member.name} fill className="object-cover grayscale" />
                     )}
                   </div>
-                  <div className="p-4">
-                    <p className="font-body text-sm font-semibold text-text-primary">{member.name}</p>
-                    <p className="font-body text-xs text-text-muted">{member.role}</p>
+                  <div className="p-[0.5em]">
+                    <p className="font-body text-small font-semibold ">{member.name}</p>
+                    <p className="font-body text-xsmall text-text-muted">{member.role}</p>
                   </div>
                 </div>
               );
@@ -69,13 +81,6 @@ export default async function AboutPage() {
           </div>
         </div>
       )}
-
-      <div className="mt-20">
-        <Link href="/contact" className="btn-pill-primary">
-          Get in touch
-          <span className="btn-pill-icon">↗</span>
-        </Link>
-      </div>
-    </div>
+    </section>
   );
 }

@@ -74,7 +74,7 @@ export default async function HomePage() {
   ];
 
   return (
-    <div className=" page-py">
+    <div className=" page-space-y">
       {/* HERO */}
       <section className="relative min-h-[calc(100vh-8em)] lg:min-h-[110vh] flex  overflow-hidden">
         {heroUrl ? (
@@ -93,12 +93,9 @@ export default async function HomePage() {
         <div className="container-press relative z-10 mb-[3em] md:mb-[4em] pt-[7em] md:pt-[8em] w-full">
           <div className="container-layout  ">
             <div className="col-span-2">
-              <div className="section-heading invisible md:visible  ">
-                <div className="section-heading-dot shrink-0"/>
-                <span className=" section-heading-text text-white! shrink-0 ">
-                  {settings?.heroEyebrow || "Meet Odoh"}
-                </span>
-              </div>
+              <p className="eyebrow invisible md:visible text-white!">
+                {settings?.heroEyebrow || "Meet Odoh"}
+              </p>
             </div>
 
             <div className="col-start-4  col-span-8  space-y-8 ">
@@ -129,15 +126,10 @@ export default async function HomePage() {
       </section>
 
       {/* WHY CHOOSE US */}
-      <section className="container-press section-py">
+      <section className="container-press section-space-y">
         <div className="container-layout  ">
           <div className="col-span-2">
-            <div className="section-heading  ">
-              <div className="section-heading-dot"/>
-              <span className=" section-heading-text">
-                Why choose us?
-              </span>
-            </div>
+            <p className="eyebrow">Why choose us?</p>
           </div>
 
           <div className="col-start-4 col-span-7 ">
@@ -151,12 +143,12 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {pillars.map((pillar: Pillar, i: number) => (
             <div key={i} className="flex gap-6">
-              <div className="w-fit h-16 rounded-xl bg-primary " >dddddbb</div>
+              <div className="w-fit h-16 rounded-xl bg-primary shrink-0 " >dddddbb</div>
               <div className="flex flex-col gap-6 ">
-                <h4 className="  ">
+                <h3 className="  ">
                   {pillar.title}
-                </h4>
-                <p className="font-body  text-text-secondary max-w-[80%]">
+                </h3>
+                <p className="max-w-[80%]">
                   {pillar.description}
                 </p>
               </div>
@@ -166,15 +158,10 @@ export default async function HomePage() {
       </section>
 
       {/* SERVICES TEASER */}
-      <section className=" section-py">
+      <section className=" section-space-y">
         <div className="container-press container-layout  ">
           <div className="col-span-2">
-            <div className="section-heading  ">
-              <div className="section-heading-dot"/>
-              <span className=" section-heading-text">
-                Services
-              </span>
-            </div>
+            <p className="eyebrow">Services</p>
           </div>
 
           <div className="col-start-4 col-span-7 space-y-6 ">
@@ -195,7 +182,8 @@ export default async function HomePage() {
           {(services.length > 0
             ? services.slice(0, 4)
             : [
-                { _id: "1", title: "Full-service publishing", summary: "Editing, cover and interior design, ISBN registration, print production, and distribution — for writers we bring onto the Odoh Publishers list." },
+                { _id: "1", title: "Full-service publishing", 
+                  summary: "Editing, cover and interior design, ISBN registration, print production, and distribution — for writers we bring onto the Odoh Publishers list." },
                 { _id: "2", title: "Developmental & line editing", summary: "Structural feedback on plot, pacing, and argument, followed by sentence-level line editing." },
                 { _id: "3", title: "Cover & interior design", summary: "Standalone design services for self-publishing authors who already have an editor." },
                 { _id: "4", title: "Manuscript consultation", summary: "A single paid session to assess a manuscript's readiness and map out next steps." },
@@ -207,31 +195,32 @@ export default async function HomePage() {
             return (
               <div
                 key={service._id}
-                className=" container-press cursor-pointer border-border border-t py-[2.5em] group flex gap-[1.25em] items-start transition-colors duration-500 ease-out nhover:bg-[#f1f5ff]/50 "
+                className=" container-press cursor-pointer border-border border-t py-[2.5em] 
+                group flex flex-col md:flex-row gap-y-[1em] gap-x-[1.25em] items-start transition-colors duration-500 ease-out nhover:bg-[#f1f5ff]/50 "
               >
-                <div className="w-[50%] flex gap-[3em]">
-                  <span className="section-heading-text">
+                <div className="w-full  md:w-[50%] flex gap-[1em] md:gap-[3em]">
+                  <span className="text-xsmall tracking-[0.14em] font-semibold uppercase text-text-primary ">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="max-w-mdo transition-colors duration-500 ease-out ngroup-hover:text-primary">
+                    <h3 className=" transition-colors duration-500 ease-out ngroup-hover:text-primary">
                       {service.title}
                     </h3>
                   </div>
                 </div>
 
-                <div className="w-[60%] flex gap-[3em]">
+                <div className="md:w-[60%] flex flex-col-reverse md:flex-row gap-y-[1.25em] gap-x-[3em]">
                   {/* height animator: 0fr -> 1fr smoothly expands the row */}
                   <div
-                    className="hidden md:grid w-65 shrink-0
-                              grid-rows-[0fr] group-hover:grid-rows-[1fr]
+                    className="block w-full md:grid md:w-65 md:shrink-0
+                              grid-rows-[0fr] md:group-hover:grid-rows-[1fr]
                               transition-[grid-template-rows] duration-700 ease-out"
                   >
                     <div className="overflow-hidden min-h-0">
                       {/* scale/fade animator: image grows into view */}
                       <div
                         className="aspect-6/4 rounded-2xl overflow-hidden bg-bg-secondary relative
-                                  scale-0 opacity-0 origin-bottom-right
+                                  md:scale-0 md:opacity-0 md:origin-bottom-right
                                   transition-all duration-700 ease-out
                                   group-hover:scale-100 group-hover:opacity-100"
                       >
@@ -260,12 +249,7 @@ export default async function HomePage() {
       <section className="container-press  ">
         <div className="container-layout  ">
           <div className="col-span-2">
-            <div className="section-heading  ">
-              <div className="section-heading-dot"/>
-              <span className=" section-heading-text">
-                About us
-              </span>
-            </div>
+            <p className="eyebrow">About us</p>
           </div>
 
           <div className="col-start-4 col-span-full space-y-6  ">
@@ -283,15 +267,10 @@ export default async function HomePage() {
       </section>
 
       {/* PORTFOLIO */}
-      <section className="container-press section-py ">
+      <section className="container-press section-space-y ">
         <div className="container-layout  ">
           <div className="col-span-2">
-            <div className="section-heading  ">
-              <div className="section-heading-dot"/>
-              <span className=" section-heading-text">
-                Our portfolio
-              </span>
-            </div>
+            <p className="eyebrow">Our portfolio</p>
           </div>
 
           <div className="col-start-4 col-span-full space-y-6  ">
@@ -324,15 +303,10 @@ export default async function HomePage() {
       </section>
 
       {/* PROCESS */}
-      <section className="container-press section-py ">
+      <section className="container-press section-space-y ">
         <div className="container-layout  ">
           <div className="col-span-2">
-            <div className="section-heading  ">
-              <div className="section-heading-dot"/>
-              <span className=" section-heading-text">
-                Our process
-              </span>
-            </div>
+            <p className="eyebrow">Our process</p>
           </div>
 
           <div className="col-start-4 col-span-full space-y-6  ">
@@ -367,15 +341,10 @@ export default async function HomePage() {
 
       {/* TESTIMONIALS */}
       {testimonials.length > 0 && (
-        <section className="container-press section-py">
+        <section className="container-press section-space-y">
           <div className="container-layout  ">
             <div className="col-span-2">
-              <div className="section-heading  ">
-                <div className="section-heading-dot"/>
-                <span className=" section-heading-text">
-                  Testimonial
-                </span>
-              </div>
+              <p className="eyebrow">Testimonial</p>
             </div>
 
             <div className="col-start-4 col-span-full space-y-6  ">
@@ -401,12 +370,7 @@ export default async function HomePage() {
         <section className="container-press ">
           <div className="container-layout  ">
             <div className="col-span-2">
-              <div className="section-heading  ">
-                <div className="section-heading-dot"/>
-                <span className=" section-heading-text">
-                  FAQs
-                </span>
-              </div>
+              <p className="eyebrow">FAQs</p>
             </div>
 
             <div className="col-start-4 col-span-full space-y-[1.5em]  ">

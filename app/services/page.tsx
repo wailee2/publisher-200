@@ -21,15 +21,23 @@ export default async function ServicesPage() {
   const list = services.length > 0 ? services : FALLBACK_SERVICES;
 
   return (
-    <div className="container-press py-16 md:py-24">
-      <p className="eyebrow">Services</p>
-      <h1 className="font-display text-4xl md:text-6xl font-bold text-text-primary max-w-2xl">
-        What we do best,
-        <br />
-        and then some.
-      </h1>
+    <section className="container-press section-space-y page-space-y pt-[6em] md:pt-[8em]">
+      <div className="container-layout  ">
+        <div className="col-span-2">
+          <p className="eyebrow">Services</p>
+        </div>
 
-      <div className="mt-20 space-y-20">
+        <div className="col-start-4 col-span-7 ">
+          <h1 className="">
+            What we do best,
+            <br />
+            and then some.
+          </h1>
+        </div>
+      </div>
+      
+
+      <div className="space-y-20">
         {list.map((service: Service, i: number) => {
           const img1 = service.imageOne
             ? urlForImage(service.imageOne).width(700).height(500).url()
@@ -49,11 +57,11 @@ export default async function ServicesPage() {
               <p className="font-body text-text-secondary max-w-2xl mb-8">
                 {service.summary}
               </p>
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div className="aspect-[4/3] bg-bg-secondary rounded-xl overflow-hidden relative">
+              <div className="grid sm:grid-cols-2 gap-[2em]">
+                <div className="aspect-3/3 bg-bg-secondary rounded-2xl overflow-hidden relative">
                   {img1 && <Image src={img1} alt={`${service.title} — image 1`} fill className="object-cover" />}
                 </div>
-                <div className="aspect-[4/3] bg-bg-secondary rounded-xl overflow-hidden relative">
+                <div className="aspect-4/3 bg-bg-secondary rounded-2xl overflow-hidden relative">
                   {img2 && <Image src={img2} alt={`${service.title} — image 2`} fill className="object-cover" />}
                 </div>
               </div>
@@ -61,6 +69,6 @@ export default async function ServicesPage() {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }

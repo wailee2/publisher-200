@@ -69,13 +69,13 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
 
   return (
     <footer className="">
-      <div className="container-press section-py pt-[9em] pb-[2em] ">
+      <div className="container-press section-space-y pt-[9em] pb-[2em] ">
         <div className="container-layout  ">
           <div className="col-span-2">
             <Logo settings={settings} />
           </div>
 
-          <div className="col-start-4 col-span-full section-py   ">
+          <div className="col-start-4 col-span-full section-space-y   ">
             <div className="space-y-[0.5em]">
               <h2 className="max-w-md">
                 {settings?.footerHeadline || "Let's build something great"}
