@@ -28,8 +28,8 @@ export default function ContactForm() {
   if (status === "done") {
     return (
       <div className="border border-border rounded-xl p-8">
-        <p className="font-display text-xl font-semibold text-text-primary mb-2">Message sent.</p>
-        <p className="font-body text-sm text-text-secondary">
+        <p className="font-display text-large font-semibold text- mb-2">Message sent.</p>
+        <p className="font-body text-small text-text-secondary">
           We reply to most notes within two working days.
         </p>
       </div>
@@ -42,37 +42,38 @@ export default function ContactForm() {
         name="name"
         placeholder="Full Name*"
         required
-        className="w-full border border-border rounded-lg bg-bg px-4 py-3.5 font-body text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-hover"
+        className="w-full border border-border rounded-lg bg-bg px-4 py-3.5 font-body text-small text- placeholder:text-text-muted focus:outline-none focus:border-border-hover"
       />
       <input
         name="email"
         type="email"
         placeholder="Email*"
         required
-        className="w-full border border-border rounded-lg bg-bg px-4 py-3.5 font-body text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-hover"
+        className="w-full border border-border rounded-lg bg-bg px-4 py-3.5 font-body text-small text- placeholder:text-text-muted focus:outline-none focus:border-border-hover"
       />
       <input
         name="subject"
         placeholder="Subject*"
         required
-        className="w-full border border-border rounded-lg bg-bg px-4 py-3.5 font-body text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-hover"
+        className="w-full border border-border rounded-lg bg-bg px-4 py-3.5 font-body text-small text- placeholder:text-text-muted focus:outline-none focus:border-border-hover"
       />
       <textarea
         name="message"
         placeholder="Message*"
         required
         rows={6}
-        className="w-full border border-border rounded-lg bg-bg px-4 py-3.5 font-body text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-hover"
+        className="w-full border border-border rounded-lg bg-bg px-4 py-3.5 font-body text-small placeholder:text-text-muted focus:outline-none focus:border-border-hover"
       />
       <button
         type="submit"
         disabled={status === "loading"}
-        className="btn-primary w-full disabled:opacity-60"
+        className="btn-primary w-full text-small flex justify-between disabled:opacity-60"
       >
         {status === "loading" ? "Sending..." : "Send message"}
+        <span className="btn-pill-icon">↗</span>
       </button>
       {status === "error" && (
-        <p role="alert" className="font-body text-sm text-primary">
+        <p role="alert" className=" text-small ">
           Something went wrong on our end — please try again or email us directly.
         </p>
       )}

@@ -98,7 +98,7 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="col-start-4  col-span-8  space-y-8 ">
+            <div className="col-start-4  col-span-7  space-y-8 ">
               <h1 className="text-white!">
                 {settings?.heroHeadline ||
                   "We publish the books Nigerian readers actually pick up."}
@@ -143,12 +143,12 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {pillars.map((pillar: Pillar, i: number) => (
             <div key={i} className="flex gap-6">
-              <div className="w-fit h-16 rounded-xl bg-primary shrink-0 " >dddddbb</div>
-              <div className="flex flex-col gap-6 ">
+              <div className="w-16 h-16 rounded-xl bg-primary shrink-0 " ></div>
+              <div className="flex flex-col gap-[1em] ">
                 <h3 className="  ">
                   {pillar.title}
                 </h3>
-                <p className="max-w-[80%]">
+                <p className="w-full md:max-w-[90%] lg:max-w-[85%]">
                   {pillar.description}
                 </p>
               </div>

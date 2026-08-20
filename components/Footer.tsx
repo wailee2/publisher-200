@@ -99,11 +99,6 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
                   Contact
                 </span>
                 <ul className="footer-list space-y-3 ">
-                  {settings?.address && 
-                    <li className="whitespace-pre-line ">
-                      {settings.address}
-                    </li>
-                  }
                   {settings?.email && (
                     <li className="">
                       <a href={`mailto:${settings.email}`} className="underline ">
@@ -116,6 +111,11 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
                       <a href={`tel:${settings.phone}`} className="underline">
                         {settings.phone}
                       </a>
+                    </li>
+                  }
+                  {settings?.address && 
+                    <li className="whitespace-pre-line ">
+                      {settings.address}
                     </li>
                   }
                 </ul>
@@ -164,17 +164,16 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
                         </a>
                       </li>
                     )}
-                    {settings?.address && 
-                      <li className="whitespace-pre-line mb-1b">
-                        {settings.address}
-                      </li>
-                    }
-                    
                     {settings?.phone && 
                       <li>
                         <a href={`tel:${settings.phone}`} className="underline">
                           {settings.phone}
                         </a>
+                      </li>
+                    }
+                    {settings?.address && 
+                      <li className="whitespace-pre-line mb-1b">
+                        {settings.address}
                       </li>
                     }
                   </ul>
