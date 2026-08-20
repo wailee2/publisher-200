@@ -105,7 +105,7 @@ export default async function HomePage() {
               </h1>
 
               <div className="space-y-6">
-                <p className=" text-white/80 max-w-[80%] md:max-w-[60%] ">
+                <p className=" text-white/80 max-w-[85%] sm:max-w-[80%] md:max-w-[60%] ">
                   {settings?.heroSubtext ||
                     "We publish fiction, poetry, and non-fiction from writers who have something to say — and edit it like it matters."}
                 </p>
@@ -116,7 +116,7 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              <div className="absolute bottom-0 font-medium flex items-center gap-2 text-white/90 text-small ">
+              <div className=" absolute bottom-0 font-medium hidden md:flex items-center gap-2 text-white/90 text-small ">
                 <span>{settings?.heroBadgeText || "Trusted by 500+ Authors Worldwide"}</span>
                 <span className="text-accent text-[22px] absolute -right-6 -top-4">★</span>
               </div>
