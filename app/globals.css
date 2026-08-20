@@ -108,7 +108,7 @@ p{
   }
 
   h1{
-    font-size: clamp(2.25rem, 4vw + 1.25rem, 3.75rem);/* Mobile: 36px (2.25rem) | Desktop Max: 60px (3.75rem) */
+    font-size: clamp(42px, 4vw + 1.25rem, 3.75rem);/* Mobile: 36px (2.25rem) | Desktop Max: 60px (3.75rem) */
     font-weight: 700;
     line-height: 1;
   }
@@ -162,7 +162,7 @@ p{
 
 @layer components {
   .page-py{
-    @apply space-y-[9em]
+    @apply space-y-[4.5em] lg:space-y-[9em]
   }
 
   .section-py{
@@ -170,7 +170,7 @@ p{
   }
 
   .container-press {
-    @apply mx-auto w-full px-[1.5em];
+    @apply max-w-375 mx-auto w-full px-[1.25em] lg:px-[2em];
   }
 
   .container-layout{
@@ -178,15 +178,15 @@ p{
   }
 
   .section-heading{
-    @apply flex gap-2 items-center mt-2
+    @apply flex flex-nowrap gap-2 items-center mt-2
   }
 
   .section-heading-dot{
-    @apply bg-primary size-[.7em] rounded-full
+    @apply bg-primary size-[.7em] rounded-full shrink-0
   }
 
   .section-heading-text{
-    @apply text-xsmall tracking-[0.14em] font-semibold uppercase text-text-primary
+    @apply text-xsmall tracking-[0.14em] font-semibold uppercase text-text-primary 
   }
 
   .eyebrow {

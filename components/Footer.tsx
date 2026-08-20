@@ -70,7 +70,7 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
   return (
     <footer className="">
       <div className="container-press section-py pt-[9em] pb-[2em] ">
-        <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+        <div className="container-layout  ">
           <div className="col-span-2">
             <Logo settings={settings} />
           </div>
@@ -93,55 +93,24 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-[2.5em] gap-y-[2.5em]  ">
-              <div className="">
-                <span className=" footer-label ">
-                  Quick Links
-                </span>
-                <ul className="footer-list">
-                  {QUICK_LINKS.map((link) => (
-                    <li key={link.href}>
-                      <Link href={link.href} className="hover:text-primary">
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {socials.length > 0 && (
-                <div>
-                  <span className="footer-label">
-                    Follow
-                  </span>
-                  <ul className="footer-list">
-                    {socials.map((s) => (
-                      <li key={s.label}>
-                        <a href={s.href} className="footer-list">{s.label}</a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              
-              <div className="">
+            <div className="space-y-[2.5em] ">
+              <div className="md:hidden sm:max-w-80">
                 <span className="footer-label">
                   Contact
                 </span>
                 <ul className="footer-list space-y-3 ">
+                  {settings?.address && 
+                    <li className="whitespace-pre-line ">
+                      {settings.address}
+                    </li>
+                  }
                   {settings?.email && (
-                    <li>
-                      <a href={`mailto:${settings.email}`} className="underline">
+                    <li className="">
+                      <a href={`mailto:${settings.email}`} className="underline ">
                         {settings.email}
                       </a>
                     </li>
                   )}
-                  {settings?.address && 
-                    <li className="whitespace-pre-line mb-1b">
-                      {settings.address}
-                    </li>
-                  }
-                  
                   {settings?.phone && 
                     <li>
                       <a href={`tel:${settings.phone}`} className="underline">
@@ -152,19 +121,79 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
                 </ul>
               </div>
 
-              <div className="">
-                <span className=" footer-label ">
-                  Legal
-                </span>
-                <ul className="footer-list">
-                  {LEGAL_LINKS.map((link) => (
-                    <li key={link.href}>
-                      <Link href={link.href} className="hover:text-primary">
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-x-[2.5em] gap-y-[2.5em]  ">
+                <div className="">
+                  <span className=" footer-label ">
+                    Quick Links
+                  </span>
+                  <ul className="footer-list">
+                    {QUICK_LINKS.map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href} className="hover:text-primary">
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {socials.length > 0 && (
+                  <div>
+                    <span className="footer-label">
+                      Follow
+                    </span>
+                    <ul className="footer-list">
+                      {socials.map((s) => (
+                        <li key={s.label}>
+                          <a href={s.href} className="footer-list">{s.label}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+                <div className="md:block hidden">
+                  <span className="footer-label">
+                    Contact
+                  </span>
+                  <ul className="footer-list space-y-3 ">
+                    {settings?.email && (
+                      <li className="">
+                        <a href={`mailto:${settings.email}`} className="underline  break-all">
+                          {settings.email}
+                        </a>
+                      </li>
+                    )}
+                    {settings?.address && 
+                      <li className="whitespace-pre-line mb-1b">
+                        {settings.address}
+                      </li>
+                    }
+                    
+                    {settings?.phone && 
+                      <li>
+                        <a href={`tel:${settings.phone}`} className="underline">
+                          {settings.phone}
+                        </a>
+                      </li>
+                    }
+                  </ul>
+                </div>
+
+                <div className="">
+                  <span className=" footer-label ">
+                    Legal
+                  </span>
+                  <ul className="footer-list">
+                    {LEGAL_LINKS.map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href} className="hover:text-primary">
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
 

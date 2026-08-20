@@ -76,7 +76,7 @@ export default async function HomePage() {
   return (
     <div className=" page-py">
       {/* HERO */}
-      <section className="relative min-h-[110vh] flex  overflow-hidden">
+      <section className="relative min-h-[calc(100vh-8em)] lg:min-h-[110vh] flex  overflow-hidden">
         {heroUrl ? (
           <Image
             src={heroUrl}
@@ -90,25 +90,25 @@ export default async function HomePage() {
         )}
         <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/70 to-black/60" />
 
-        <div className="container-press relative z-10 mb-[4em] pt-[8em] w-full">
-          <div className="space-y-2 md:container-layout  ">
+        <div className="container-press relative z-10 mb-[3em] md:mb-[4em] pt-[7em] md:pt-[8em] w-full">
+          <div className="container-layout  ">
             <div className="col-span-2">
-              <div className="section-heading  ">
-                <div className="section-heading-dot"/>
-                <span className=" section-heading-text text-white! ">
+              <div className="section-heading invisible md:visible  ">
+                <div className="section-heading-dot shrink-0"/>
+                <span className=" section-heading-text text-white! shrink-0 ">
                   {settings?.heroEyebrow || "Meet Odoh"}
                 </span>
               </div>
             </div>
 
-            <div className="col-start-4 col-span-6 space-y-8 ">
+            <div className="col-start-4  col-span-8  space-y-8 ">
               <h1 className="text-white!">
                 {settings?.heroHeadline ||
                   "We publish the books Nigerian readers actually pick up."}
               </h1>
 
               <div className="space-y-6">
-                <p className="font-body text-white/80  max-w-[60%] ">
+                <p className=" text-white/80 max-w-[80%] md:max-w-[60%] ">
                   {settings?.heroSubtext ||
                     "We publish fiction, poetry, and non-fiction from writers who have something to say — and edit it like it matters."}
                 </p>
