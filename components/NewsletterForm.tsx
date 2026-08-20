@@ -48,7 +48,7 @@ export default function NewsletterForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="btn-primary !px-4 !py-2 text-xs disabled:opacity-60"
+        className="btn-primary px-4 py-2 text-xs disabled:opacity-60"
       >
         {status === "loading" ? "..." : "Sign up"}
       </button>

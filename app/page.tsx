@@ -88,10 +88,10 @@ export default async function HomePage() {
         ) : (
           <div className="absolute inset-0 bg-secondary" />
         )}
-        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/70 to-black/60" />
 
         <div className="container-press relative z-10 mb-[4em] pt-[8em] w-full">
-          <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+          <div className="space-y-2 md:container-layout  ">
             <div className="col-span-2">
               <div className="section-heading  ">
                 <div className="section-heading-dot"/>
@@ -130,7 +130,7 @@ export default async function HomePage() {
 
       {/* WHY CHOOSE US */}
       <section className="container-press section-py">
-        <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+        <div className="container-layout  ">
           <div className="col-span-2">
             <div className="section-heading  ">
               <div className="section-heading-dot"/>
@@ -167,7 +167,7 @@ export default async function HomePage() {
 
       {/* SERVICES TEASER */}
       <section className=" section-py">
-        <div className="container-press grid grid-cols-12 gap-[1.25em] items-start  ">
+        <div className="container-press container-layout  ">
           <div className="col-span-2">
             <div className="section-heading  ">
               <div className="section-heading-dot"/>
@@ -207,14 +207,14 @@ export default async function HomePage() {
             return (
               <div
                 key={service._id}
-                className=" container-press cursor-pointer border-border border-t py-[2.5em] group flex gap-[1.25em] items-start transition-colors duration-500 ease-out hover:bg-[#f1f5ff]/50 "
+                className=" container-press cursor-pointer border-border border-t py-[2.5em] group flex gap-[1.25em] items-start transition-colors duration-500 ease-out nhover:bg-[#f1f5ff]/50 "
               >
                 <div className="w-[50%] flex gap-[3em]">
                   <span className="section-heading-text">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="transition-colors duration-500 ease-out group-hover:text-primary">
+                    <h3 className="max-w-mdo transition-colors duration-500 ease-out ngroup-hover:text-primary">
                       {service.title}
                     </h3>
                   </div>
@@ -258,7 +258,7 @@ export default async function HomePage() {
 
       {/* ABOUT TEASER */}
       <section className="container-press  ">
-        <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+        <div className="container-layout  ">
           <div className="col-span-2">
             <div className="section-heading  ">
               <div className="section-heading-dot"/>
@@ -284,7 +284,7 @@ export default async function HomePage() {
 
       {/* PORTFOLIO */}
       <section className="container-press section-py ">
-        <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+        <div className="container-layout  ">
           <div className="col-span-2">
             <div className="section-heading  ">
               <div className="section-heading-dot"/>
@@ -325,7 +325,7 @@ export default async function HomePage() {
 
       {/* PROCESS */}
       <section className="container-press section-py ">
-        <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+        <div className="container-layout  ">
           <div className="col-span-2">
             <div className="section-heading  ">
               <div className="section-heading-dot"/>
@@ -368,7 +368,7 @@ export default async function HomePage() {
       {/* TESTIMONIALS */}
       {testimonials.length > 0 && (
         <section className="container-press section-py">
-          <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+          <div className="container-layout  ">
             <div className="col-span-2">
               <div className="section-heading  ">
                 <div className="section-heading-dot"/>
@@ -399,7 +399,7 @@ export default async function HomePage() {
       {/* FAQ */}
       {faqs.length > 0 && (
         <section className="container-press ">
-          <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+          <div className="container-layout  ">
             <div className="col-span-2">
               <div className="section-heading  ">
                 <div className="section-heading-dot"/>

@@ -108,29 +108,30 @@ p{
   }
 
   h1{
-    font-size: 60px;
+    font-size: clamp(2.25rem, 4vw + 1.25rem, 3.75rem);/* Mobile: 36px (2.25rem) | Desktop Max: 60px (3.75rem) */
     font-weight: 700;
     line-height: 1;
   }
 
   h2{
-    font-size: 50px;
+    font-size: clamp(2.0rem, 3vw + 1.25rem, 3.125rem);/* Mobile: 32px (2.0rem) | Desktop Max: 50px (3.125rem) */
     font-weight: 600;
     line-height: 1.1;
   }
 
   h3{
-    font-size: 30px;
-    font-weight: 600;
+    font-size: clamp(1.625rem, 2.5vw + 1rem, 2.5rem);/* Mobile: 26px (1.625rem) | Desktop Max: 40px (2.5rem) */
+    font-weight: 500;
     line-height: 1;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.02em;
   }
 
   h4{
+    font-size: clamp(1.375rem, 1.5vw + 1rem, 1.875rem);/* Mobile: 22px (1.375rem) | Desktop Max: 30px (1.875rem) */
     font-size: 30px;
     font-weight: 500;
     line-height: 1;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.02em;
   }
 
   p{
@@ -170,6 +171,10 @@ p{
 
   .container-press {
     @apply mx-auto w-full px-[1.5em];
+  }
+
+  .container-layout{
+    @apply space-y-2 md:grid grid-cols-12 gap-[1.25em] items-start
   }
 
   .section-heading{

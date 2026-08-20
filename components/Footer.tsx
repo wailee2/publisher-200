@@ -128,12 +128,7 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
                 <span className="footer-label">
                   Contact
                 </span>
-                <ul className="footer-list ">
-                  {settings?.address && 
-                    <li className="whitespace-pre-line mb-1">
-                      {settings.address}
-                    </li>
-                  }
+                <ul className="footer-list space-y-3 ">
                   {settings?.email && (
                     <li>
                       <a href={`mailto:${settings.email}`} className="underline">
@@ -141,6 +136,12 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
                       </a>
                     </li>
                   )}
+                  {settings?.address && 
+                    <li className="whitespace-pre-line mb-1b">
+                      {settings.address}
+                    </li>
+                  }
+                  
                   {settings?.phone && 
                     <li>
                       <a href={`tel:${settings.phone}`} className="underline">
@@ -167,7 +168,7 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
               </div>
             </div>
 
-            <div className="pt-[2em] uppercase flex flex-col sm:flex-row items-center justify-between gap-3 text-xsmall text-text-muted">
+            <div className="pt-[2em] uppercase flex  items-end justify-between gap-3 text-xsmall text-text-muted">
               <p>All right reserve @{year}</p>
               <a 
                 href='https://wa.me/qr/DEVSJBVEXRRGG1' 

@@ -63,21 +63,9 @@ export default function Header({ settings }: { settings: SiteSettings }) {
           Contact
         </Link>
 
-
-        <nav aria-label="Primary mobile" className="flex md:hidden items-center gap-4">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="font-body text-text-primary"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link href="/contact" className="btn-primary ">
-            Contact
-          </Link>
-        </nav>
+        <div className="md:hidden">
+          🍔
+        </div>
       </div>
     </header>
   );
