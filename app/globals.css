@@ -144,6 +144,10 @@ p{
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
+  
+  button{
+    cursor: pointer;
+  }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -230,5 +234,13 @@ p{
 
   .card {
     @apply bg-card-bg border border-border rounded-2xl;
+  }
+
+  .footer-label{
+    @apply uppercase tracking-wider text-text-muted 
+  }
+
+  .footer-list{
+    @apply mt-[1.5em] space-y-0.5
   }
 }

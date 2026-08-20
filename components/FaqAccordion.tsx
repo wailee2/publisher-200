@@ -19,7 +19,7 @@ export default function FaqAccordion({ items }: { items: FaqItem[] }) {
           <div key={item._id}>
             <button
               onClick={() => setOpenId(isOpen ? null : item._id)}
-              className="w-full flex items-center justify-between gap-6 py-6 text-left"
+              className="w-full flex items-center justify-between gap-6 py-6 text-left  "
               aria-expanded={isOpen}
             >
               <span className=" font-medium text-large text-text-primary">

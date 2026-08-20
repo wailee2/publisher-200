@@ -24,7 +24,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={inter.variable}>
-      <body className=' font-body bg-bg text-text-primary antialiased max-w-375 mx-auto '>
+      <body className='  antialiased max-w-375 mx-auto '>
         <Header settings={settings} />
         <main>{children}</main>
         <Footer settings={settings} />

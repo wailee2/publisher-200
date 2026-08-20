@@ -76,7 +76,7 @@ export default async function HomePage() {
   return (
     <div className=" page-py">
       {/* HERO */}
-      <section className="relative min-h-[110vh] flex justify-betweens items- overflow-hidden">
+      <section className="relative min-h-[110vh] flex  overflow-hidden">
         {heroUrl ? (
           <Image
             src={heroUrl}
@@ -119,7 +119,7 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              <div className="absolute bottom-0 font-medium flex items-center gap-2 mt-16b text-white/90 text-small text-small ">
+              <div className="absolute bottom-0 font-medium flex items-center gap-2 text-white/90 text-small ">
                 <span>{settings?.heroBadgeText || "Trusted by 500+ Authors Worldwide"}</span>
                 <span className="text-accent text-[22px] absolute -right-6 -top-4">★</span>
               </div>
@@ -409,7 +409,7 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="col-start-4 col-span-full space-y-[1.7em]  ">
+            <div className="col-start-4 col-span-full space-y-[1.5em]  ">
               <h2 className="">
                 Got questions?
                 <br />
@@ -423,15 +423,18 @@ export default async function HomePage() {
       )}
 
       {/* CTA BANNER */}
-      <section className="container-press pb-20 md:pb-28">
-        <div className="rounded-3xl bg-[linear-gradient(to_bottom_right,#00278B_0%,#0036BE_35%,#00278B_73%,#0044F1_100%)] px-8 py-20 md:py-28 text-center">
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-white max-w-xl mx-auto mb-8">
-            {settings?.ctaHeadline || "Join us in creating and publishing art"}
-          </h2>
-          <Link href="/contact" className="btn-pill-white inline-flex">
-            {settings?.ctaButtonText || "Let us collaborate"}
-            <span className="btn-pill-icon">↗</span>
-          </Link>
+      <section className="container-press md:grid grid-cols-12 gap-[1.25em]  ">
+        <div className="rounded-3xl px-8 py-20 md:py-28 text-center col-start-2 col-span-10 h-[78vh] flex justify-center items-center
+                        bg-[linear-gradient(to_bottom_right,#00278B_0%,#0036BE_35%,#00278B_73%,#0044F1_100%)] ">
+          <div>
+            <h2 className=" font-bold text-white max-w-xl mx-auto mb-8">
+              {settings?.ctaHeadline || "Join us in creating and publishing art"}
+            </h2>
+            <Link href="/contact" className="btn-pill-white inline-flex">
+              {settings?.ctaButtonText || "Let us collaborate"}
+              <span className="btn-pill-icon">↗</span>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

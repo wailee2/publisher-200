@@ -1,7 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
+import { urlForImage } from "@/sanity/image";
 
 type SiteSettings = {
   companyName?: string;
+  logo?: { asset?: { _ref: string } };
   footerHeadline?: string;
   footerSubtext?: string;
   footerButtonText?: string;
@@ -15,6 +18,44 @@ type SiteSettings = {
   twitter?: string;
 } | null;
 
+const QUICK_LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About us" },
+  { href: "/services", label: "Services" },
+  { href: "/portfolio", label: "Portfolio" },
+];
+
+const LEGAL_LINKS = [
+  { href: "/terms", label: "Terms of service" },
+  { href: "/privacy", label: "Privacy policy" },
+];
+
+function Logo({ settings }: { settings: SiteSettings }) {
+  const logoUrl = settings?.logo
+    ? urlForImage(settings.logo).width(80).height(80).url()
+    : null;
+
+  if (logoUrl) {
+    return (
+      <Image
+        src={logoUrl}
+        alt={settings?.companyName || "The Odoh Publishers"}
+        width={40}
+        height={40}
+        className="h-9 w-auto"
+      />
+    );
+  }
+
+  return (
+    <span className="inline-flex flex-col items-start border border-border rounded px-2 py-1 leading-none mb-8">
+      <span className="text-[8px] tracking-[0.2em] text-text-muted">THE</span>
+      <span className="font-display text-sm font-extrabold text-primary tracking-tight">ODOH</span>
+      <span className="text-[7px] tracking-[0.15em] text-text-muted">PUBLISHERS</span>
+    </span>
+  );
+}
+
 export default function Footer({ settings }: { settings: SiteSettings }) {
   const year = new Date().getFullYear();
 
@@ -27,79 +68,117 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
   ].filter((s) => s.href);
 
   return (
-    <footer className="bg-bg border-t border-border mt-24">
-      <div className="container-press py-16 md:py-24">
-        <span className="inline-flex flex-col items-start border border-border rounded px-2 py-1 leading-none mb-8">
-          <span className="text-[8px] tracking-[0.2em] text-text-muted">THE</span>
-          <span className="font-display text-sm font-extrabold text-primary tracking-tight">ODOH</span>
-          <span className="text-[7px] tracking-[0.15em] text-text-muted">PUBLISHERS</span>
-        </span>
-
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary max-w-lg">
-          {settings?.footerHeadline || "Let's build something great"}
-        </h2>
-        <p className="font-body text-text-secondary mt-3 max-w-md">
-          {settings?.footerSubtext ||
-            "Odoh helps authors turn ideas into results through design, strategy, and innovation."}
-        </p>
-        <Link href="/contact" className="btn-pill-primary mt-6">
-          {settings?.footerButtonText || "Get started"}
-          <span className="btn-pill-icon">↗</span>
-        </Link>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-10 mt-16">
-          <div>
-            <p className="font-body text-xs uppercase tracking-[0.14em] text-text-muted mb-4">
-              Quick Links
-            </p>
-            <ul className="space-y-2 font-body text-sm text-text-primary">
-              <li><Link href="/" className="hover:text-primary">Home</Link></li>
-              <li><Link href="/about" className="hover:text-primary">About us</Link></li>
-              <li><Link href="/services" className="hover:text-primary">Services</Link></li>
-              <li><Link href="/portfolio" className="hover:text-primary">Portfolio</Link></li>
-            </ul>
-
-            <p className="font-body text-xs uppercase tracking-[0.14em] text-text-muted mb-4 mt-8">
-              Legal
-            </p>
-            <ul className="space-y-2 font-body text-sm text-text-primary">
-              <li><Link href="/terms" className="hover:text-primary">Terms of service</Link></li>
-              <li><Link href="/privacy" className="hover:text-primary">Privacy policy</Link></li>
-            </ul>
+    <footer className="">
+      <div className="container-press section-py pt-[9em] pb-[2em] ">
+        <div className="grid grid-cols-12 gap-[1.25em] items-start  ">
+          <div className="col-span-2">
+            <Logo settings={settings} />
           </div>
 
-          <div>
-            <p className="font-body text-xs uppercase tracking-[0.14em] text-text-muted mb-4">
-              Contact
-            </p>
-            <ul className="space-y-2 font-body text-sm text-text-primary">
-              {settings?.email && (
-                <li><a href={`mailto:${settings.email}`} className="hover:text-primary">{settings.email}</a></li>
-              )}
-              {settings?.address && <li className="whitespace-pre-line">{settings.address}</li>}
-              {settings?.phone && <li>{settings.phone}</li>}
-            </ul>
-          </div>
+          <div className="col-start-4 col-span-full section-py   ">
+            <div className="space-y-[0.5em]">
+              <h2 className="max-w-md">
+                {settings?.footerHeadline || "Let's build something great"}
+              </h2>
 
-          {socials.length > 0 && (
-            <div>
-              <p className="font-body text-xs uppercase tracking-[0.14em] text-text-muted mb-4">
-                Follow
-              </p>
-              <ul className="space-y-2 font-body text-sm text-text-primary">
-                {socials.map((s) => (
-                  <li key={s.label}>
-                    <a href={s.href} className="hover:text-primary">{s.label}</a>
-                  </li>
-                ))}
-              </ul>
+              <div>
+                <p className="  max-w-md">
+                  {settings?.footerSubtext ||
+                    "Odoh helps authors turn ideas into results through design, strategy, and innovation."}
+                </p>
+                <Link href="/contact" className="btn-pill-primary mt-5">
+                  {settings?.footerButtonText || "Get started"}
+                  <span className="btn-pill-icon">↗</span>
+                </Link>
+              </div>
             </div>
-          )}
-        </div>
 
-        <div className="mt-16 pt-6 border-t border-border flex flex-col sm:flex-row justify-between gap-3 text-xs text-text-muted font-body">
-          <p>All right reserve @{year}</p>
-          <p>Site by Wailee</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-[2.5em] gap-y-[2.5em]  ">
+              <div className="">
+                <span className=" footer-label ">
+                  Quick Links
+                </span>
+                <ul className="footer-list">
+                  {QUICK_LINKS.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className="hover:text-primary">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {socials.length > 0 && (
+                <div>
+                  <span className="footer-label">
+                    Follow
+                  </span>
+                  <ul className="footer-list">
+                    {socials.map((s) => (
+                      <li key={s.label}>
+                        <a href={s.href} className="footer-list">{s.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              <div className="">
+                <span className="footer-label">
+                  Contact
+                </span>
+                <ul className="footer-list ">
+                  {settings?.address && 
+                    <li className="whitespace-pre-line mb-1">
+                      {settings.address}
+                    </li>
+                  }
+                  {settings?.email && (
+                    <li>
+                      <a href={`mailto:${settings.email}`} className="underline">
+                        {settings.email}
+                      </a>
+                    </li>
+                  )}
+                  {settings?.phone && 
+                    <li>
+                      <a href={`tel:${settings.phone}`} className="underline">
+                        {settings.phone}
+                      </a>
+                    </li>
+                  }
+                </ul>
+              </div>
+
+              <div className="">
+                <span className=" footer-label ">
+                  Legal
+                </span>
+                <ul className="footer-list">
+                  {LEGAL_LINKS.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className="hover:text-primary">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="pt-[2em] uppercase flex flex-col sm:flex-row items-center justify-between gap-3 text-xsmall text-text-muted">
+              <p>All right reserve @{year}</p>
+              <a 
+                href='https://wa.me/qr/DEVSJBVEXRRGG1' 
+                className="footer-list" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                Site by Wailee
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
