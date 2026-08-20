@@ -160,6 +160,10 @@ p{
 }
 
 @layer components {
+  .page-pt {
+    @apply pt-[6em] md:pt-[8em];
+  }
+
   .page-space-y{
     @apply space-y-[4.5em] lg:space-y-[9em]
   }
@@ -190,7 +194,9 @@ p{
     flex-shrink: 0;
   }
 
-  
+  .bookmark-number{
+    @apply text-xsmall tracking-[0.14em] font-semibold uppercase text-text-primary 
+  }
 
   .btn-pill-primary {
     @apply inline-flex items-center gap-12 rounded-full pl-5 pr-2 py-2 transition-colors bg-primary text-text-on-primary hover:bg-primary-hover;

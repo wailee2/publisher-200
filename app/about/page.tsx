@@ -21,7 +21,7 @@ export default async function AboutPage() {
 
   return (
     
-    <section className="container-press section-space-y page-space-y pt-[6em] md:pt-[8em]">
+    <section className="container-press section-space-y page-space-y page-pt">
       <div className="container-layout  ">
         <div className="col-span-2">
           <p className="eyebrow">About us</p>
@@ -72,8 +72,8 @@ export default async function AboutPage() {
                     )}
                   </div>
                   <div className="p-[0.5em]">
-                    <p className="font-body text-small font-semibold ">{member.name}</p>
-                    <p className="font-body text-xsmall text-text-muted">{member.role}</p>
+                    <p className=" text-small font-semibold ">{member.name}</p>
+                    <p className="text-xsmall text-text-muted">{member.role}</p>
                   </div>
                 </div>
               );

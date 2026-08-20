@@ -39,11 +39,11 @@ export default function PortfolioCard({
         )}
       </div>
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <span className="section-heading-text ">
+        <div className="flex items-center gap-2">
+          <span className="bookmark-number ">
             {String(index + 1).padStart(2, "0")}
           </span>{" "}
-          <span className="capitalize text-large font-semibold ">
+          <span className="capitalize text-small lg:text-medium font-medium ">
             {item.title}
           </span>
         </div>

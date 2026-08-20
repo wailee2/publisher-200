@@ -21,7 +21,7 @@ export default async function ServicesPage() {
   const list = services.length > 0 ? services : FALLBACK_SERVICES;
 
   return (
-    <section className="container-press section-space-y page-space-y pt-[6em] md:pt-[8em]">
+    <section className="container-press section-space-y page-space-y page-pt ">
       <div className="container-layout  ">
         <div className="col-span-2">
           <p className="eyebrow">Services</p>
@@ -36,6 +36,7 @@ export default async function ServicesPage() {
         </div>
       </div>
       
+      <div className='h-[0.05em] bg-border'/>
 
       <div className="space-y-20">
         {list.map((service: Service, i: number) => {
@@ -47,22 +48,27 @@ export default async function ServicesPage() {
             : null;
 
           return (
-            <div key={service._id}>
-              <span className="font-body text-sm text-text-muted">
+            <div key={service._id} className="flex gap-[1em] md:gap-[3em]">
+              <span className="bookmark-number">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h2 className="font-display text-2xl md:text-4xl font-semibold text-text-primary mt-2 mb-3">
-                {service.title}
-              </h2>
-              <p className="font-body text-text-secondary max-w-2xl mb-8">
-                {service.summary}
-              </p>
-              <div className="grid sm:grid-cols-2 gap-[2em]">
-                <div className="aspect-3/3 bg-bg-secondary rounded-2xl overflow-hidden relative">
-                  {img1 && <Image src={img1} alt={`${service.title} — image 1`} fill className="object-cover" />}
-                </div>
-                <div className="aspect-4/3 bg-bg-secondary rounded-2xl overflow-hidden relative">
-                  {img2 && <Image src={img2} alt={`${service.title} — image 2`} fill className="object-cover" />}
+
+              <div className="w-full">
+                <h3 className="mb-4">
+                  {service.title}
+                </h3>
+
+                <p className="max-w-xl mb-8">
+                  {service.summary}
+                </p>
+
+                <div className="grid sm:grid-cols-2 gap-[1.5em]">
+                  <div className="aspect-4/3 bg-bg-secondary rounded-2xl overflow-hidden relative">
+                    {img1 && <Image src={img1} alt={`${service.title} - image 1`} fill className="object-cover" />}
+                  </div>
+                  <div className="aspect-4/3 bg-bg-secondary rounded-2xl overflow-hidden relative">
+                    {img2 && <Image src={img2} alt={`${service.title} - image 2`} fill className="object-cover" />}
+                  </div>
                 </div>
               </div>
             </div>

@@ -12,16 +12,25 @@ export default async function PortfolioPage() {
   const items = await getAllPortfolioItems().catch(() => []);
 
   return (
-    <div className="container-press py-16 md:py-24">
-      <p className="eyebrow">Our portfolio</p>
-      <h1 className="font-display text-4xl md:text-6xl font-bold text-text-primary max-w-2xl">
-        Work that speaks
-        <br />
-        louder than pitches.
-      </h1>
+    <div className="container-press section-space-y page-space-y page-pt">
+      <div className="container-layout  ">
+        <div className="col-span-2">
+          <p className="eyebrow">Our portfolio</p>
+        </div>
+
+        <div className="col-start-4 col-span-7 ">
+          <h1 className="">
+            Work that speaks
+            <br />
+            louder than pitches.
+          </h1>
+        </div>
+      </div>
+
+      <div className='h-[0.05em] bg-border'/>
 
       {items.length > 0 ? (
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-10">
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-[1.5em]">
           {items.map((item: PortfolioItem, i: number) => (
             <PortfolioCard key={item._id} item={item} index={i} />
           ))}

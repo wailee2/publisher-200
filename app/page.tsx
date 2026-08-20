@@ -199,7 +199,7 @@ export default async function HomePage() {
                 group flex flex-col md:flex-row gap-y-[1em] gap-x-[1.25em] items-start transition-colors duration-500 ease-out nhover:bg-[#f1f5ff]/50 "
               >
                 <div className="w-full  md:w-[50%] flex gap-[1em] md:gap-[3em]">
-                  <span className="text-xsmall tracking-[0.14em] font-semibold uppercase text-text-primary ">
+                  <span className="bookmark-number">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
