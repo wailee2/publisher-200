@@ -50,7 +50,7 @@ function Logo({ settings }: { settings: SiteSettings }) {
   return (
     <span className="inline-flex flex-col items-start border border-border rounded px-2 py-1 leading-none mb-8">
       <span className="text-[8px] tracking-[0.2em] text-text-muted">THE</span>
-      <span className="font-display text-sm font-extrabold text-primary tracking-tight">ODOH</span>
+      <span className="font-display text-small font-extrabold text-primary tracking-tight">ODOH</span>
       <span className="text-[7px] tracking-[0.15em] text-text-muted">PUBLISHERS</span>
     </span>
   );

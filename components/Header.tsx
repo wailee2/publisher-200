@@ -37,7 +37,7 @@ function Logo({ settings }: { settings: SiteSettings }) {
   return (
     <span className="inline-flex flex-col items-start border border-border rounded px-2 py-1 leading-none mb-8">
       <span className="text-[8px] tracking-[0.2em] text-text-muted">THE</span>
-      <span className="font-display text-sm font-extrabold text-primary tracking-tight">ODOH</span>
+      <span className="font-display text-small font-extrabold text-primary tracking-tight">ODOH</span>
       <span className="text-[7px] tracking-[0.15em] text-text-muted">PUBLISHERS</span>
     </span>
   );
@@ -63,6 +63,7 @@ function HamburgerButton({ isOpen, onClick }: { isOpen: boolean; onClick: () => 
 
 export default function Header({ settings }: { settings: SiteSettings }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAtTop, setIsOverHero] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -71,8 +72,44 @@ export default function Header({ settings }: { settings: SiteSettings }) {
     };
   }, [isOpen]);
 
+  // Header stays transparent near the very top, then goes solid once
+  // the user scrolls past a small threshold: 10px below md, 20px at md+.
+  useEffect(() => {
+    const MD_BREAKPOINT = 768; // Tailwind's `md`
+
+    const getThreshold = () =>
+      window.innerWidth >= MD_BREAKPOINT ? 30 : 10;
+
+    let threshold = getThreshold();
+
+    const handleScroll = () => {
+      setIsOverHero(window.scrollY < threshold);
+    };
+
+    const handleResize = () => {
+      threshold = getThreshold();
+      handleScroll();
+    };
+
+    handleScroll(); // set initial state on mount
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <header className="bg-bg border-b border-border sticky top-0 z-40 container-press py-4">
+    <header
+      className={`fixed top-0 z-40 container-press py-3 md:py-4 transition-colors duration-300 ease-out
+                  ${
+                    isAtTop
+                      ? "bg-transparent border-b border-transparent"
+                      : "bg-bg border-b border-border"
+                  }`}
+    >
       <div className="flex items-center justify-between">
         <Link href="/" aria-label="Home">
           <Logo settings={settings} />
@@ -83,7 +120,11 @@ export default function Header({ settings }: { settings: SiteSettings }) {
             <Link
               key={link.href}
               href={link.href}
-              className="font-body text-text-primary hover:text-primary transition-colors"
+              className={`font-body transition-colors ${
+                isAtTop
+                  ? "text-white hover:text-white/80"
+                  : "text-text-primary hover:text-primary"
+              }`}
             >
               {link.label}
             </Link>
@@ -107,7 +148,7 @@ export default function Header({ settings }: { settings: SiteSettings }) {
       />
 
       <div
-        className={`fixed top-16 right-4 left-4 z-50 md:hidden grid 
+        className={`fixed top-4 right-4 left-4 z-50 md:hidden grid 
                     transition-[grid-template-rows] duration-500 ease-out
                     ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
       >
@@ -116,21 +157,21 @@ export default function Header({ settings }: { settings: SiteSettings }) {
             <button
               onClick={() => setIsOpen(false)}
               aria-label="Close menu"
-              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center"
+              className="absolute top-4 right-7 w-8 h-8 flex items-center justify-center"
             >
               <span className="relative block w-5 h-5">
-                <span className="absolute inset-0 rotate-45 top-1/2 h-0.5 w-5 bg-text-primary rounded-full" />
-                <span className="absolute inset-0 -rotate-45 top-1/2 h-0.5 w-5 bg-text-primary rounded-full" />
+                <span className="absolute inset-0 rotate-45 top-1/2 h-0.5 w-8 bg-text-primary rounded-full" />
+                <span className="absolute inset-0 -rotate-45 top-1/2 h-0.5 w-8 bg-text-primary rounded-full" />
               </span>
             </button>
 
-            <div className="bg-bg rounded-2xl shadow-2xl p-6 pt-1f4 ">
+            <div className="bg-bg rounded-2xl shadow-2xl p-6 pt-17 ">
 
-              <p className="text-xs font-semibold tracking-wide text-text-primary mb-2">
-                (Navigation)
+              <p className="text-xsmall hidden font-semibold tracking-wide text-text-primary mb-2">
+                Navigation
               </p>
               
-              <div className="border-t border-dashed border-text-primary/60 mb-8" />
+              <div className="border-t hidden border-dashed border-text-primary/60 mb-8" />
 
               <nav aria-label="Mobile" className="flex flex-col gap-3 ">
                 {NAV_LINKS.map((link) => (

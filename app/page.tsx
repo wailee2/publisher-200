@@ -76,7 +76,10 @@ export default async function HomePage() {
   return (
     <div className=" page-space-y">
       {/* HERO */}
-      <section className="relative min-h-[calc(100vh-8em)] lg:min-h-[110vh] flex  overflow-hidden">
+      <section 
+        id="herjo"
+        className="relative min-h-[calc(100vh-4em)] lg:min-h-[110vh] flex  overflow-hidden"
+      >
         {heroUrl ? (
           <Image
             src={heroUrl}
@@ -88,9 +91,10 @@ export default async function HomePage() {
         ) : (
           <div className="absolute inset-0 bg-secondary" />
         )}
+
         <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/70 to-black/60" />
 
-        <div className="container-press relative z-10 mb-[3em] md:mb-[4em] pt-[7em] md:pt-[8em] w-full">
+        <div className="container-press relative z-10 mb-[3em] md:mb-[4em] pt-[4em] md:pt-[8em] w-full">
           <div className="container-layout  ">
             <div className="col-span-2">
               <p className="eyebrow invisible md:visible text-white!">
@@ -116,7 +120,7 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              <div className=" absolute bottom-0 font-medium hidden md:flex items-center gap-2 text-white/90 text-small ">
+              <div className=" absolute bottom-0 font-medium hidden xl:flex items-center gap-2 text-white/90 text-small ">
                 <span>{settings?.heroBadgeText || "Trusted by 500+ Authors Worldwide"}</span>
                 <span className="text-accent text-[22px] absolute -right-6 -top-4">★</span>
               </div>
@@ -294,10 +298,8 @@ export default async function HomePage() {
             ))}
           </div>
         ) : (
-          <p className="text-text-secondary">
-            No portfolio items marked as featured yet — add some in the
-            studio at <code className="text-primary">/studio</code> and
-            toggle &ldquo;Feature on homepage&rdquo;.
+          <p className="">
+            No portfolio items marked as featured yet
           </p>
         )}
       </section>

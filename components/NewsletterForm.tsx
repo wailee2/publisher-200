@@ -25,7 +25,7 @@ export default function NewsletterForm() {
 
   if (status === "done") {
     return (
-      <p className="font-body text-sm text-text-primary">
+      <p className="font-body text-small text-text-primary">
         You&apos;re subscribed. Watch your inbox.
       </p>
     );
@@ -43,7 +43,7 @@ export default function NewsletterForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="you@email.com"
-        className="flex-1 min-w-0 px-3 py-2 text-sm font-body border border-border bg-bg text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-hover rounded-lg"
+        className="flex-1 min-w-0 px-3 py-2 text-small font-body border border-border bg-bg text-text-primary placeholder:text-text-muted focus:outline-none focus:border-border-hover rounded-lg"
       />
       <button
         type="submit"

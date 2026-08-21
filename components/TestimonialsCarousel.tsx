@@ -206,7 +206,7 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
                      flex items-center justify-center
                      disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          <span className="text-white text-lg">←</span>
+          <span className="text-white text-large">←</span>
         </button>
         <button
           onClick={() => scrollByCard("right")}
@@ -216,7 +216,7 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
                      flex items-center justify-center
                      disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          <span className="text-white text-lg">→</span>
+          <span className="text-white text-large">→</span>
         </button>
       </div>
     </div>

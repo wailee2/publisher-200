@@ -50,7 +50,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
               {item.title}
             </h1>
             {item.author && (
-              <p className="font-body text-lg text-text-muted mt-2">by {item.author}</p>
+              <p className="font-body text-large text-text-muted mt-2">by {item.author}</p>
             )}
 
             {item.summary && (
