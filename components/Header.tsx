@@ -43,7 +43,15 @@ function Logo({ settings }: { settings: SiteSettings }) {
   );
 }
 
-function HamburgerButton({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) {
+function HamburgerButton({
+  isOpen,
+  onClick,
+  isAtTop,
+}: {
+  isOpen: boolean;
+  onClick: () => void;
+  isAtTop: boolean;
+}) {
   return (
     <button
       onClick={onClick}
@@ -52,10 +60,14 @@ function HamburgerButton({ isOpen, onClick }: { isOpen: boolean; onClick: () => 
       className="relative w-9 h-9 flex items-center justify-center"
     >
       <span
-        className={`absolute h-0.5 w-8 bg-text-primary rounded-full transition-transform duration-400 ease-out -translate-y-1.25`}
+        className={`absolute h-0.5 w-8 rounded-full -translate-y-1.25 transition-colors duration-300 ${
+          isAtTop ? "bg-white" : "bg-text-primary"
+        }`}
       />
       <span
-        className={`absolute h-0.5 w-8 bg-text-primary rounded-full transition-transform duration-400 ease-out translate-y-1.25`}
+        className={`absolute h-0.5 w-8 rounded-full translate-y-1.25 transition-colors duration-300 ${
+          isAtTop ? "bg-white" : "bg-text-primary"
+        }`}
       />
     </button>
   );
@@ -72,13 +84,11 @@ export default function Header({ settings }: { settings: SiteSettings }) {
     };
   }, [isOpen]);
 
-  // Header stays transparent near the very top, then goes solid once
-  // the user scrolls past a small threshold: 10px below md, 20px at md+.
   useEffect(() => {
-    const MD_BREAKPOINT = 768; // Tailwind's `md`
+    const MD_BREAKPOINT = 768;
 
     const getThreshold = () =>
-      window.innerWidth >= MD_BREAKPOINT ? 30 : 10;
+      window.innerWidth >= MD_BREAKPOINT ? 20 : 10;
 
     let threshold = getThreshold();
 
@@ -136,7 +146,7 @@ export default function Header({ settings }: { settings: SiteSettings }) {
         </Link>
 
         <div className="md:hidden">
-          <HamburgerButton isOpen={isOpen} onClick={() => setIsOpen((v) => !v)} />
+          <HamburgerButton isOpen={isOpen} onClick={() => setIsOpen((v) => !v)} isAtTop={isAtTop} />
         </div>
       </div>
 
