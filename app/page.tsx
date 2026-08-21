@@ -78,7 +78,7 @@ export default async function HomePage() {
       {/* HERO */}
       <section 
         id="hero"
-        className="relative min-h-screen"
+        className="relative min-h-screen h-dvh "
       >
         {heroUrl ? (
           <div className="fixed inset-0 -z-10 h-screen w-screen pointer-events-none">
@@ -96,7 +96,7 @@ export default async function HomePage() {
 
         <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/70 to-black/60" />
 
-        <div className="container-press relative z-10 mb-[3em] md:mb-[4em] pt-[7em] md:pt-[9.5em] w-full">
+        <div className="container-press relative z-10 mb-[3em] md:mb-[4em] pt-[7em] md:pt-[9.5em] lg:pt-[6em] xl:pt-[9.5em] w-full">
           <div className="container-layout  ">
             <div className="col-span-2">
               <p className="eyebrow invisible md:visible text-white!">
@@ -130,7 +130,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <div className="pt-[9em] lg:pt-y-[18em] bg-bg page-space-y">
+      <div className="pt-[2em] lg:pt-[4em] bg-bg page-space-y">
         {/* WHY CHOOSE US */}
         <section className="container-press section-space-y">
           <div className="container-layout  ">

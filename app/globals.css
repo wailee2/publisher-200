@@ -165,7 +165,7 @@ p{
   }
 
   .page-space-y{
-    @apply space-y-[4.5em] lg:space-y-[9em]
+    @apply space-y-[4.8em] lg:space-y-[9em]
   }
 
   .section-space-y{
