@@ -76,9 +76,9 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
             <Logo settings={settings} />
           </div>
 
-          <div className="col-start-4 col-span-full section-space-y   ">
+          <div className="col-start-4 col-span-full section-space-y ">
             <div className="space-y-[0.5em]">
-              <h2 className="max-w-md">
+              <h2 className="max-w-lg">
                 {settings?.footerHeadline || "Let's build something great"}
               </h2>
 
@@ -93,15 +93,47 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
               </div>
             </div>
 
-            <div className="space-y-[2.5em] ">
-              <div className="md:hidden sm:max-w-80">
+            <div className='h-[0.05em] bg-border'/>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-[2.5em] gap-y-[1.5em] sm:gap-y-[2em] lg:gap-y-[2.5em]  ">
+              <div className="">
+                <span className=" footer-label ">
+                  Quick Links
+                </span>
+                <ul className="footer-list">
+                  {QUICK_LINKS.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className="hover:text-primary">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {socials.length > 0 && (
+                <div>
+                  <span className="footer-label">
+                    Follow
+                  </span>
+                  <ul className="footer-list">
+                    {socials.map((s) => (
+                      <li key={s.label}>
+                        <a href={s.href} className="footer-list">{s.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              <div className="col-span-full w-[70%] sm:col-span-1 sm:w-full ">
                 <span className="footer-label">
                   Contact
                 </span>
                 <ul className="footer-list space-y-3 ">
                   {settings?.email && (
                     <li className="">
-                      <a href={`mailto:${settings.email}`} className="underline ">
+                      <a href={`mailto:${settings.email}`} className="underline  break-all">
                         {settings.email}
                       </a>
                     </li>
@@ -114,85 +146,26 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
                     </li>
                   }
                   {settings?.address && 
-                    <li className="whitespace-pre-line ">
+                    <li className="whitespace-pre-line mb-1b">
                       {settings.address}
                     </li>
                   }
                 </ul>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-x-[2.5em] gap-y-[2.5em]  ">
-                <div className="">
-                  <span className=" footer-label ">
-                    Quick Links
-                  </span>
-                  <ul className="footer-list">
-                    {QUICK_LINKS.map((link) => (
-                      <li key={link.href}>
-                        <Link href={link.href} className="hover:text-primary">
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {socials.length > 0 && (
-                  <div>
-                    <span className="footer-label">
-                      Follow
-                    </span>
-                    <ul className="footer-list">
-                      {socials.map((s) => (
-                        <li key={s.label}>
-                          <a href={s.href} className="footer-list">{s.label}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                
-                <div className="md:block hidden">
-                  <span className="footer-label">
-                    Contact
-                  </span>
-                  <ul className="footer-list space-y-3 ">
-                    {settings?.email && (
-                      <li className="">
-                        <a href={`mailto:${settings.email}`} className="underline  break-all">
-                          {settings.email}
-                        </a>
-                      </li>
-                    )}
-                    {settings?.phone && 
-                      <li>
-                        <a href={`tel:${settings.phone}`} className="underline">
-                          {settings.phone}
-                        </a>
-                      </li>
-                    }
-                    {settings?.address && 
-                      <li className="whitespace-pre-line mb-1b">
-                        {settings.address}
-                      </li>
-                    }
-                  </ul>
-                </div>
-
-                <div className="">
-                  <span className=" footer-label ">
-                    Legal
-                  </span>
-                  <ul className="footer-list">
-                    {LEGAL_LINKS.map((link) => (
-                      <li key={link.href}>
-                        <Link href={link.href} className="hover:text-primary">
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="">
+                <span className=" footer-label ">
+                  Legal
+                </span>
+                <ul className="footer-list">
+                  {LEGAL_LINKS.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className="hover:text-primary">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 

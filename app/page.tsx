@@ -94,7 +94,7 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-secondary" />
         )}
 
-        <div className="container-press relative z-10 mb-[3em] md:mb-[4em] pt-[7em] md:pt-[9.5em] lg:pt-[6em] xl:pt-[9.5em] w-full">
+        <div className="container-press relative z-10 mb-[3em] md:mb-[4em] pt-[7em] md:pt-[8.5em] lg:pt-[6em] xl:pt-[9.5em] w-full">
           <div className="container-layout  ">
             <div className="col-span-2">
               <p className="eyebrow invisible md:visible text-white!">
@@ -144,15 +144,15 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[2.5em]">
             {pillars.map((pillar: Pillar, i: number) => (
-              <div key={i} className="flex gap-6">
+              <div key={i} className="flex flex-col lg:flex-row  gap-6">
                 <div className="w-16 h-16 rounded-xl bg-primary shrink-0 " ></div>
                 <div className="flex flex-col gap-[1em] ">
                   <h3 className="  ">
                     {pillar.title}
                   </h3>
-                  <p className="w-full md:max-w-[90%] lg:max-w-[85%]">
+                  <p className="w-full md:max-w-[90%] lg:max-w-none">
                     {pillar.description}
                   </p>
                 </div>
@@ -181,7 +181,7 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="">
+          <div className=" ">
             {(services.length > 0
               ? services.slice(0, 4)
               : [
@@ -201,7 +201,7 @@ export default async function HomePage() {
                   className=" container-press cursor-pointer border-border border-t py-[2.5em] 
                   group flex flex-col lg:flex-row gap-y-[1em] gap-x-[1.25em] items-start transition-colors duration-500 ease-out nhover:bg-[#f1f5ff]/50 "
                 >
-                  <div className="w-full  lg:w-[50%] flex gap-[1em] lg:gap-[3em]">
+                  <div className=" w-full  lg:w-[50%] flex flex-col lg:flex-row gap-[1em] lg:gap-[3em]">
                     <span className="bookmark-number">
                       {String(i + 1).padStart(2, "0")}
                     </span>
