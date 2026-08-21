@@ -78,7 +78,7 @@ export default async function HomePage() {
       {/* HERO */}
       <section 
         id="hero"
-        className="relative min-h-screen h-dvh "
+        className="relative min-h-screen "
       >
         {heroUrl ? (
           <div className="fixed inset-0 -z-10 h-screen w-screen pointer-events-none">
@@ -88,13 +88,11 @@ export default async function HomePage() {
               fill
               priority
               className="object-cover"
-            />
+            /><div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/70 to-black/60 min-h-screen" />
           </div>
         ) : (
           <div className="absolute inset-0 bg-secondary" />
         )}
-
-        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/70 to-black/60" />
 
         <div className="container-press relative z-10 mb-[3em] md:mb-[4em] pt-[7em] md:pt-[9.5em] lg:pt-[6em] xl:pt-[9.5em] w-full">
           <div className="container-layout  ">
@@ -105,7 +103,7 @@ export default async function HomePage() {
             </div>
 
             <div className="col-start-4  col-span-7  space-y-8 ">
-              <h1 className="text-white!">
+              <h1 className="text-white! sm:max-w-[75%] lg:max-w-none ">
                 {settings?.heroHeadline ||
                   "We publish the books Nigerian readers actually pick up."}
               </h1>
@@ -201,9 +199,9 @@ export default async function HomePage() {
                 <div
                   key={service._id}
                   className=" container-press cursor-pointer border-border border-t py-[2.5em] 
-                  group flex flex-col md:flex-row gap-y-[1em] gap-x-[1.25em] items-start transition-colors duration-500 ease-out nhover:bg-[#f1f5ff]/50 "
+                  group flex flex-col lg:flex-row gap-y-[1em] gap-x-[1.25em] items-start transition-colors duration-500 ease-out nhover:bg-[#f1f5ff]/50 "
                 >
-                  <div className="w-full  md:w-[50%] flex gap-[1em] md:gap-[3em]">
+                  <div className="w-full  lg:w-[50%] flex gap-[1em] lg:gap-[3em]">
                     <span className="bookmark-number">
                       {String(i + 1).padStart(2, "0")}
                     </span>
@@ -214,18 +212,17 @@ export default async function HomePage() {
                     </div>
                   </div>
 
-                  <div className="md:w-[60%] flex flex-col-reverse md:flex-row gap-y-[1.25em] gap-x-[3em]">
-                    {/* height animator: 0fr -> 1fr smoothly expands the row */}
+                  <div className="lg:w-[60%] flex flex-col-reverse lg:flex-row gap-y-[1.25em] gap-x-[3em]">
                     <div
-                      className="block w-full md:grid md:w-65 md:shrink-0
-                                grid-rows-[0fr] md:group-hover:grid-rows-[1fr]
+                      className="block w-full lg:grid lg:w-65 lg:shrink-0
+                                grid-rows-[0fr] lg:group-hover:grid-rows-[1fr]
                                 transition-[grid-template-rows] duration-700 ease-out"
                     >
                       <div className="overflow-hidden min-h-0">
                         {/* scale/fade animator: image grows into view */}
                         <div
                           className="aspect-6/4 rounded-2xl overflow-hidden bg-bg-secondary relative
-                                    md:scale-0 md:opacity-0 md:origin-bottom-right
+                                    lg:scale-0 lg:opacity-0 lg:origin-bottom-right
                                     transition-all duration-700 ease-out
                                     group-hover:scale-100 group-hover:opacity-100"
                         >

@@ -177,7 +177,7 @@ p{
   }
 
   .container-layout{
-    @apply space-y-5 md:grid grid-cols-12 gap-[1.25em] items-start
+    @apply space-y-5 lg:grid grid-cols-12 gap-[1.25em] items-start
   }
 
   .eyebrow {
