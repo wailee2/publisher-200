@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { urlForImage } from "@/sanity/image";
+import { ArrowUpRight } from "lucide-react";
 
 type PortfolioItem = {
   _id: string;
@@ -47,9 +48,9 @@ export default function PortfolioCard({
             {item.title}
           </span>
         </div>
-        <span className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-text-primary group-hover:border-primary group-hover:text-primary transition-colors">
-          ↗
-        </span>
+        <div className="border-border border rounded-full p-1.5 group-hover:border-primary group-hover:text-primary transition-colors">
+          <ArrowUpRight className="size-4 text-text-muted group-hover:border-primary group-hover:text-primary transition-colors" /> 
+        </div>
       </div>
     </Link>
   );

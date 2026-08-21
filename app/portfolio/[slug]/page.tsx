@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getPortfolioItemBySlug } from "@/lib/queries";
 import { urlForImage } from "@/sanity/image";
+import { PillButton } from "@/components/PillButton";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -65,11 +66,11 @@ export default async function PortfolioDetailPage({ params }: Props) {
                   View project
                   <span className="btn-pill-icon">↗</span>
                 </a>
+                
               ) : (
-                <Link href="/contact" className="btn-pill-primary">
+                <PillButton href="/contact" variant="pill-primary">
                   Enquire about this project
-                  <span className="btn-pill-icon">↗</span>
-                </Link>
+                </PillButton>
               )}
             </div>
           </div>

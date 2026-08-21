@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import {
   getSiteSettings,
@@ -12,6 +11,7 @@ import PortfolioCard from "@/components/PortfolioCard";
 import FaqAccordion from "@/components/FaqAccordion";
 import type { Service, PortfolioItem, Pillar, ProcessStep } from "@/lib/types";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
+import { PillButton } from "@/components/PillButton";
 
 export default async function HomePage() {
   const [settings, portfolioItems, services, testimonials, faqs] =
@@ -77,7 +77,7 @@ export default async function HomePage() {
     <div className=" page-space-y">
       {/* HERO */}
       <section 
-        id="herjo"
+        id="hero"
         className="relative min-h-[calc(100vh-4em)] lg:min-h-[110vh] flex  overflow-hidden"
       >
         {heroUrl ? (
@@ -113,11 +113,10 @@ export default async function HomePage() {
                   {settings?.heroSubtext ||
                     "We publish fiction, poetry, and non-fiction from writers who have something to say — and edit it like it matters."}
                 </p>
-
-                <Link href="/services" className="btn-pill-white">
+                
+                <PillButton href="/services" variant="pill-white">
                   Explore our services
-                  <span className="btn-pill-icon">↗</span>
-                </Link>
+                </PillButton>
               </div>
 
               <div className=" absolute bottom-0 font-medium hidden xl:flex items-center gap-2 text-white/90 text-small ">
@@ -175,10 +174,9 @@ export default async function HomePage() {
               and then some.
             </h2>
 
-            <Link href="/services" className="btn-pill-primary">
+            <PillButton href="/services" variant="pill-primary">
               Explore our services
-              <span className="btn-pill-icon">↗</span>
-            </Link>
+            </PillButton>
           </div>
         </div>
 
@@ -262,10 +260,9 @@ export default async function HomePage() {
                 "The Odoh Publisher was founded in Nigeria by a group of editors and designers who were tired of watching strong manuscripts stall."}
             </h2>
 
-            <Link href="/about" className="btn-pill-primary">
+            <PillButton href="/about" variant="pill-primary">
               Learn more about our team
-              <span className="btn-pill-icon">↗</span>
-            </Link>
+            </PillButton>
           </div>
         </div>
       </section>
@@ -284,10 +281,9 @@ export default async function HomePage() {
               louder than pitches.
             </h2>
 
-            <Link href="/portfolio" className="btn-pill-primary">
+            <PillButton href="/portfolio" variant="pill-primary">
               Explore more
-              <span className="btn-pill-icon">↗</span>
-            </Link>
+            </PillButton>
           </div>
         </div>
 
@@ -316,10 +312,9 @@ export default async function HomePage() {
               {settings?.processHeadline || "A simple yet powerful and efficient process."}
             </h2>
 
-            <Link href="/contact" className="btn-pill-primary">
+            <PillButton href="/contact" variant="pill-primary">
               Get started
-              <span className="btn-pill-icon">↗</span>
-            </Link>
+            </PillButton>
           </div>
         </div>
 
@@ -356,10 +351,9 @@ export default async function HomePage() {
                 Hear from our authors.
               </h2>
 
-              <Link href="/contact" className="btn-pill-primary">
+              <PillButton href="/contact" variant="pill-primary">
                 Get in touch
-                <span className="btn-pill-icon">↗</span>
-              </Link>
+              </PillButton>
             </div>
           </div>
 
@@ -396,10 +390,10 @@ export default async function HomePage() {
             <h2 className=" font-bold text-white max-w-xl mx-auto mb-8">
               {settings?.ctaHeadline || "Join us in creating and publishing art"}
             </h2>
-            <Link href="/contact" className="btn-pill-white inline-flex">
+
+            <PillButton href="/contact" variant="pill-white">
               {settings?.ctaButtonText || "Let us collaborate"}
-              <span className="btn-pill-icon">↗</span>
-            </Link>
+            </PillButton>
           </div>
         </div>
       </section>

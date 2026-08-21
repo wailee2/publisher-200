@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PillButton } from "@/components/PillButton";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
@@ -64,14 +65,15 @@ export default function ContactForm() {
         rows={6}
         className="w-full border border-border rounded-lg bg-bg px-4 py-3.5 font-body text-small placeholder:text-text-muted focus:outline-none focus:border-border-hover"
       />
-      <button
+      <PillButton
+        variant="pill-primary"
         type="submit"
-        disabled={status === "loading"}
-        className="btn-primary w-full text-small flex justify-between disabled:opacity-60"
+        loading={status === "loading"}
+        loadingText="Sending..."
+        className="btn-pill-primary w-full text-small flex justify-between disabled:opacity-60"
       >
-        {status === "loading" ? "Sending..." : "Send message"}
-        <span className="btn-pill-icon">↗</span>
-      </button>
+        Send message
+      </PillButton>
       {status === "error" && (
         <p role="alert" className=" text-small ">
           Something went wrong on our end — please try again or email us directly.

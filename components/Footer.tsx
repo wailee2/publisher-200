@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { urlForImage } from "@/sanity/image";
+import { PillButton } from "@/components/PillButton";
 
 type SiteSettings = {
   companyName?: string;
@@ -86,10 +87,9 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
                   {settings?.footerSubtext ||
                     "Odoh helps authors turn ideas into results through design, strategy, and innovation."}
                 </p>
-                <Link href="/contact" className="btn-pill-primary mt-5">
+                <PillButton href="/contact" variant="pill-primary" className="mt-5">
                   {settings?.footerButtonText || "Get started"}
-                  <span className="btn-pill-icon">↗</span>
-                </Link>
+                </PillButton>
               </div>
             </div>
 

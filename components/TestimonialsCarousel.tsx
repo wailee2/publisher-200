@@ -4,6 +4,7 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { urlForImage } from "@/sanity/image";
 import type { Testimonial } from "@/lib/types";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 
 const MOBILE_BREAKPOINT = 640; // matches Tailwind's `sm`
 const MOBILE_GUTTER = 16; // small natural left/right padding on mobile, in px
@@ -160,8 +161,8 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
         onClickCapture={onClickCapture}
         style={{ paddingLeft: sidePad, paddingRight: sidePad, paddingTop: "1.5rem", paddingBottom: "2.5rem" }}
         className="flex flex-nowrap gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth cursor-grab select-none
-                   w-full min-w-0 touch-pan-x
-                   [-ms-overflow-style:none] scrollbar-width:none [&::-webkit-scrollbar]:hidden"
+                  w-full min-w-0 touch-pan-x
+                  [-ms-overflow-style:none] scrollbar-width:none [&::-webkit-scrollbar]:hidden"
       >
         {testimonials.map((t: Testimonial, i: number) => {
           const photoUrl = t.authorPhoto
@@ -174,9 +175,9 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
               ref={(node) => { cardRefs.current[i] = node; }}
               style={{ transition: "transform 300ms ease-out, opacity 300ms ease-out" }}
               className={`bg-card-bg rounded-2xl p-6 flex flex-col justify-between min-h-90
-                         w-[82vw] xs:w-[75vw] sm:w-100
-                         shrink-0 will-change-transform
-                         ${isMobile ? "snap-start" : "snap-center"} snap-always`}
+                        w-[82vw] xs:w-[75vw] sm:w-100
+                        shrink-0 will-change-transform
+                        ${isMobile ? "snap-start" : "snap-center"} snap-always`}
             >
               <p className="">&ldquo;{t.quote}&rdquo;</p>
               <div className="flex items-center gap-3 mt-6">
@@ -202,21 +203,21 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
           onClick={() => scrollByCard("left")}
           disabled={!canScrollLeft}
           aria-label="Previous testimonial"
-          className="w-11 h-11 rounded-full bg-primary hover:scale-90 hover:enabled:bg-primary/70 transition-all duration-300
-                     flex items-center justify-center
-                     disabled:opacity-30 disabled:cursor-not-allowed"
+          className="size-12.5 rounded-full bg-primary hover:scale-90 hover:enabled:bg-primary/70 transition-all duration-300
+                    flex items-center justify-center
+                    disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          <span className="text-white text-large">←</span>
+          <ArrowLeft className="size-7.5 text-white "  />
         </button>
         <button
           onClick={() => scrollByCard("right")}
           disabled={!canScrollRight}
           aria-label="Next testimonial"
-          className="w-11 h-11 rounded-full bg-primary hover:scale-90 hover:enabled:bg-primary/70 transition-all duration-300
-                     flex items-center justify-center
-                     disabled:opacity-30 disabled:cursor-not-allowed"
+          className="size-12.5 rounded-full bg-primary hover:scale-90 hover:enabled:bg-primary/70 transition-all duration-300
+                    flex items-center justify-center
+                    disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          <span className="text-white text-large">→</span>
+          <ArrowRight className="size-7.5 text-white " /> 
         </button>
       </div>
     </div>
