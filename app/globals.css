@@ -161,7 +161,7 @@ p{
 
 @layer components {
   .page-pt {
-    @apply pt-[6em] md:pt-[8em];
+    @apply pt-[8em] md:pt-[9.5em];
   }
 
   .page-space-y{

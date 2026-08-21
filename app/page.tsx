@@ -94,7 +94,7 @@ export default async function HomePage() {
 
         <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/70 to-black/60" />
 
-        <div className="container-press relative z-10 mb-[3em] md:mb-[4em] pt-[4em] md:pt-[8em] w-full">
+        <div className="container-press relative z-10 mb-[3em] md:mb-[4em] pt-[7em] md:pt-[9.5em] w-full">
           <div className="container-layout  ">
             <div className="col-span-2">
               <p className="eyebrow invisible md:visible text-white!">
