@@ -194,7 +194,7 @@ export default function Header({
           href="/contact"
           className="btn-primary hidden md:inline-flex"
         >
-          Contact
+          Contact us
         </Link>
 
         {/* Mobile Hamburger */}

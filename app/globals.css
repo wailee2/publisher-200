@@ -108,26 +108,26 @@ p{
   }
 
   h1{
-    font-size: clamp(2.625rem, 4vw + 1.25rem, 3.75rem);/* 42px to 60px*/
+    font-size: clamp(2.625rem, 3.7vw + 1.4rem, 4.375rem);/* 42px to 70px*/
     font-weight: 700;
     line-height: 1.05;
   }
 
   h2{
-    font-size: clamp(2.188rem, 3vw + 1.25rem, 3.125rem);/* 35px to 50px */
+    font-size: clamp(2rem, 3vw + 1.1rem, 4rem);/* 32px to 64px */
     font-weight: 600;
     line-height: 1.1;
   }
 
   h3{
-    font-size: clamp(1.5rem, 2.5vw + 1rem, 2.188rem);/* 24px to 35px */
+    font-size: clamp(1.5rem, 2.5vw + 1rem, 2.5rem);/* 24px to 40px */
     font-weight: 500;
     line-height: 1.15;
     letter-spacing: -0.02em;
   }
 
   h4{
-    font-size: clamp(1.375rem, 1.5vw + 1rem, 1.875rem);/* Mobile: 22px (1.375rem) | Desktop Max: 30px (1.875rem) */
+    font-size: clamp(1.375rem, 1.5vw + 1rem, 2rem);/* 22px  to 32px */
     font-weight: 500;
     line-height: 1;
     letter-spacing: -0.02em;
@@ -177,7 +177,7 @@ p{
   }
 
   .container-layout{
-    @apply space-y-2 md:grid grid-cols-12 gap-[1.25em] items-start
+    @apply space-y-5 md:grid grid-cols-12 gap-[1.25em] items-start
   }
 
   .eyebrow {

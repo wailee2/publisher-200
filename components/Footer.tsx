@@ -69,7 +69,7 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
   ].filter((s) => s.href);
 
   return (
-    <footer className="">
+    <footer className="bg-bg">
       <div className="container-press section-space-y pt-[9em] pb-[2em] ">
         <div className="container-layout  ">
           <div className="col-span-2">

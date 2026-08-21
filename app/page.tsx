@@ -74,20 +74,22 @@ export default async function HomePage() {
   ];
 
   return (
-    <div className=" page-space-y">
+    <div className="">
       {/* HERO */}
       <section 
         id="hero"
-        className="relative min-h-[calc(100vh-4em)] lg:min-h-[110vh] flex  overflow-hidden"
+        className="relative min-h-screen"
       >
         {heroUrl ? (
-          <Image
-            src={heroUrl}
-            alt="A shelf of published books"
-            fill
-            priority
-            className="object-cover"
-          />
+          <div className="fixed inset-0 -z-10 h-screen w-screen pointer-events-none">
+            <Image
+              src={heroUrl}
+              alt="A shelf of published books"
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
         ) : (
           <div className="absolute inset-0 bg-secondary" />
         )}
@@ -119,7 +121,7 @@ export default async function HomePage() {
                 </PillButton>
               </div>
 
-              <div className=" absolute bottom-0 font-medium hidden xl:flex items-center gap-2 text-white/90 text-small ">
+              <div className=" absolute bottom-0 font-medium hidden xl:mflex items-center gap-2 text-white/90 text-small ">
                 <span>{settings?.heroBadgeText || "Trusted by 500+ Authors Worldwide"}</span>
                 <span className="text-accent text-[22px] absolute -right-6 -top-4">★</span>
               </div>
@@ -128,275 +130,277 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
-      <section className="container-press section-space-y">
-        <div className="container-layout  ">
-          <div className="col-span-2">
-            <p className="eyebrow">Why choose us?</p>
-          </div>
-
-          <div className="col-start-4 col-span-7 ">
-            <h2 className="">
-              {settings?.whyChooseUsHeadline ||
-                "We combine bold creativity with strategy to drive results."}
-            </h2>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {pillars.map((pillar: Pillar, i: number) => (
-            <div key={i} className="flex gap-6">
-              <div className="w-16 h-16 rounded-xl bg-primary shrink-0 " ></div>
-              <div className="flex flex-col gap-[1em] ">
-                <h3 className="  ">
-                  {pillar.title}
-                </h3>
-                <p className="w-full md:max-w-[90%] lg:max-w-[85%]">
-                  {pillar.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* SERVICES TEASER */}
-      <section className=" section-space-y">
-        <div className="container-press container-layout  ">
-          <div className="col-span-2">
-            <p className="eyebrow">Services</p>
-          </div>
-
-          <div className="col-start-4 col-span-7 space-y-6 ">
-            <h2 className="">
-              What we do best,
-              <br />
-              and then some.
-            </h2>
-
-            <PillButton href="/services" variant="pill-primary">
-              Explore our services
-            </PillButton>
-          </div>
-        </div>
-
-        <div className="">
-          {(services.length > 0
-            ? services.slice(0, 4)
-            : [
-                { _id: "1", title: "Full-service publishing", 
-                  summary: "Editing, cover and interior design, ISBN registration, print production, and distribution — for writers we bring onto the Odoh Publishers list." },
-                { _id: "2", title: "Developmental & line editing", summary: "Structural feedback on plot, pacing, and argument, followed by sentence-level line editing." },
-                { _id: "3", title: "Cover & interior design", summary: "Standalone design services for self-publishing authors who already have an editor." },
-                { _id: "4", title: "Manuscript consultation", summary: "A single paid session to assess a manuscript's readiness and map out next steps." },
-              ]
-          ).map((service: Service, i: number) => {
-            const imgUrl = service.imageOne
-              ? urlForImage(service.imageOne).width(300).height(220).url()
-              : null;
-            return (
-              <div
-                key={service._id}
-                className=" container-press cursor-pointer border-border border-t py-[2.5em] 
-                group flex flex-col md:flex-row gap-y-[1em] gap-x-[1.25em] items-start transition-colors duration-500 ease-out nhover:bg-[#f1f5ff]/50 "
-              >
-                <div className="w-full  md:w-[50%] flex gap-[1em] md:gap-[3em]">
-                  <span className="bookmark-number">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className=" transition-colors duration-500 ease-out ngroup-hover:text-primary">
-                      {service.title}
-                    </h3>
-                  </div>
-                </div>
-
-                <div className="md:w-[60%] flex flex-col-reverse md:flex-row gap-y-[1.25em] gap-x-[3em]">
-                  {/* height animator: 0fr -> 1fr smoothly expands the row */}
-                  <div
-                    className="block w-full md:grid md:w-65 md:shrink-0
-                              grid-rows-[0fr] md:group-hover:grid-rows-[1fr]
-                              transition-[grid-template-rows] duration-700 ease-out"
-                  >
-                    <div className="overflow-hidden min-h-0">
-                      {/* scale/fade animator: image grows into view */}
-                      <div
-                        className="aspect-6/4 rounded-2xl overflow-hidden bg-bg-secondary relative
-                                  md:scale-0 md:opacity-0 md:origin-bottom-right
-                                  transition-all duration-700 ease-out
-                                  group-hover:scale-100 group-hover:opacity-100"
-                      >
-                        {imgUrl && (
-                          <Image
-                            src={imgUrl}
-                            alt={service.title}
-                            fill
-                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  <p className="">
-                    {service.summary}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ABOUT TEASER */}
-      <section className="container-press  ">
-        <div className="container-layout  ">
-          <div className="col-span-2">
-            <p className="eyebrow">About us</p>
-          </div>
-
-          <div className="col-start-4 col-span-full space-y-6  ">
-            <h2 className="text-pretty">
-              {settings?.aboutHeadline ||
-                "The Odoh Publisher was founded in Nigeria by a group of editors and designers who were tired of watching strong manuscripts stall."}
-            </h2>
-
-            <PillButton href="/about" variant="pill-primary">
-              Learn more about our team
-            </PillButton>
-          </div>
-        </div>
-      </section>
-
-      {/* PORTFOLIO */}
-      <section className="container-press section-space-y ">
-        <div className="container-layout  ">
-          <div className="col-span-2">
-            <p className="eyebrow">Our portfolio</p>
-          </div>
-
-          <div className="col-start-4 col-span-full space-y-6  ">
-            <h2 className="">
-              Work that speaks
-              <br />
-              louder than pitches.
-            </h2>
-
-            <PillButton href="/portfolio" variant="pill-primary">
-              Explore more
-            </PillButton>
-          </div>
-        </div>
-
-        {portfolioItems.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[1.5em]">
-            {portfolioItems.map((item: PortfolioItem, i: number) => (
-              <PortfolioCard key={item._id} item={item} index={i} />
-            ))}
-          </div>
-        ) : (
-          <p className="">
-            No portfolio items marked as featured yet
-          </p>
-        )}
-      </section>
-
-      {/* PROCESS */}
-      <section className="container-press section-space-y ">
-        <div className="container-layout  ">
-          <div className="col-span-2">
-            <p className="eyebrow">Our process</p>
-          </div>
-
-          <div className="col-start-4 col-span-full space-y-6  ">
-            <h2 className="">
-              {settings?.processHeadline || "A simple yet powerful and efficient process."}
-            </h2>
-
-            <PillButton href="/contact" variant="pill-primary">
-              Get started
-            </PillButton>
-          </div>
-        </div>
-
-        <div className="grid items-center justify-center sm:grid-cols-2 lg:grid-cols-3 gap-[1.25em]">
-          {processSteps.map((step: ProcessStep, i: number) => (
-            <div
-              key={i}
-              className={`${processStyles[i % 3]} rounded-2xl px-8 pt-4 pb-8 lg:px-10  lg:pt-10 lg:pb-17  min-h-70  flex flex-col items-center justify-between`}
-            >
-              <span className="font-display  text-[50px] lg:text-[80px] font-semibold">
-                {String(i + 1).padStart(2, "0")}.
-              </span>
-              <div>
-                <h3 className="text-center text-[30px] lg:text-[40px] font-medium mb-4 lg:mb-5">{step.title}</h3>
-                <p className=" text-current">{step.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      {testimonials.length > 0 && (
+      <div className="pt-[9em] lg:pt-y-[18em] bg-bg page-space-y">
+        {/* WHY CHOOSE US */}
         <section className="container-press section-space-y">
           <div className="container-layout  ">
             <div className="col-span-2">
-              <p className="eyebrow">Testimonial</p>
+              <p className="eyebrow">Why choose us?</p>
             </div>
 
-            <div className="col-start-4 col-span-full space-y-6  ">
+            <div className="col-start-4 col-span-7 ">
               <h2 className="">
-                Don&apos;t take our word for it.
+                {settings?.whyChooseUsHeadline ||
+                  "We combine bold creativity with strategy to drive results."}
+              </h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {pillars.map((pillar: Pillar, i: number) => (
+              <div key={i} className="flex gap-6">
+                <div className="w-16 h-16 rounded-xl bg-primary shrink-0 " ></div>
+                <div className="flex flex-col gap-[1em] ">
+                  <h3 className="  ">
+                    {pillar.title}
+                  </h3>
+                  <p className="w-full md:max-w-[90%] lg:max-w-[85%]">
+                    {pillar.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* SERVICES TEASER */}
+        <section className=" section-space-y">
+          <div className="container-press container-layout  ">
+            <div className="col-span-2">
+              <p className="eyebrow">Services</p>
+            </div>
+
+            <div className="col-start-4 col-span-7 space-y-6 ">
+              <h2 className="">
+                What we do best,
                 <br />
-                Hear from our authors.
+                and then some.
               </h2>
 
-              <PillButton href="/contact" variant="pill-primary">
-                Get in touch
+              <PillButton href="/services" variant="pill-primary">
+                Explore our services
               </PillButton>
             </div>
           </div>
 
-          <TestimonialsCarousel testimonials={testimonials} />
-        </section>
-      )}
+          <div className="">
+            {(services.length > 0
+              ? services.slice(0, 4)
+              : [
+                  { _id: "1", title: "Full-service publishing", 
+                    summary: "Editing, cover and interior design, ISBN registration, print production, and distribution — for writers we bring onto the Odoh Publishers list." },
+                  { _id: "2", title: "Developmental & line editing", summary: "Structural feedback on plot, pacing, and argument, followed by sentence-level line editing." },
+                  { _id: "3", title: "Cover & interior design", summary: "Standalone design services for self-publishing authors who already have an editor." },
+                  { _id: "4", title: "Manuscript consultation", summary: "A single paid session to assess a manuscript's readiness and map out next steps." },
+                ]
+            ).map((service: Service, i: number) => {
+              const imgUrl = service.imageOne
+                ? urlForImage(service.imageOne).width(300).height(220).url()
+                : null;
+              return (
+                <div
+                  key={service._id}
+                  className=" container-press cursor-pointer border-border border-t py-[2.5em] 
+                  group flex flex-col md:flex-row gap-y-[1em] gap-x-[1.25em] items-start transition-colors duration-500 ease-out nhover:bg-[#f1f5ff]/50 "
+                >
+                  <div className="w-full  md:w-[50%] flex gap-[1em] md:gap-[3em]">
+                    <span className="bookmark-number">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <h3 className=" transition-colors duration-500 ease-out ngroup-hover:text-primary">
+                        {service.title}
+                      </h3>
+                    </div>
+                  </div>
 
-      {/* FAQ */}
-      {faqs.length > 0 && (
-        <section className="container-press ">
+                  <div className="md:w-[60%] flex flex-col-reverse md:flex-row gap-y-[1.25em] gap-x-[3em]">
+                    {/* height animator: 0fr -> 1fr smoothly expands the row */}
+                    <div
+                      className="block w-full md:grid md:w-65 md:shrink-0
+                                grid-rows-[0fr] md:group-hover:grid-rows-[1fr]
+                                transition-[grid-template-rows] duration-700 ease-out"
+                    >
+                      <div className="overflow-hidden min-h-0">
+                        {/* scale/fade animator: image grows into view */}
+                        <div
+                          className="aspect-6/4 rounded-2xl overflow-hidden bg-bg-secondary relative
+                                    md:scale-0 md:opacity-0 md:origin-bottom-right
+                                    transition-all duration-700 ease-out
+                                    group-hover:scale-100 group-hover:opacity-100"
+                        >
+                          {imgUrl && (
+                            <Image
+                              src={imgUrl}
+                              alt={service.title}
+                              fill
+                              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                            />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    <p className="">
+                      {service.summary}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ABOUT TEASER */}
+        <section className="container-press  ">
           <div className="container-layout  ">
             <div className="col-span-2">
-              <p className="eyebrow">FAQs</p>
+              <p className="eyebrow">About us</p>
             </div>
 
-            <div className="col-start-4 col-span-full space-y-[1.5em]  ">
-              <h2 className="">
-                Got questions?
-                <br />
-                We&apos;ve got answers.
+            <div className="col-start-4 col-span-full space-y-6  ">
+              <h2 className="text-pretty">
+                {settings?.aboutHeadline ||
+                  "The Odoh Publisher was founded in Nigeria by a group of editors and designers who were tired of watching strong manuscripts stall."}
               </h2>
-              
-              <FaqAccordion items={faqs} />
+
+              <PillButton href="/about" variant="pill-primary">
+                Learn more about our team
+              </PillButton>
             </div>
           </div>
         </section>
-      )}
 
-      {/* CTA BANNER */}
-      <section className="container-press md:grid grid-cols-12 gap-[1.25em]  ">
-        <div className="rounded-3xl px-8 py-20 md:py-28 text-center col-start-2 col-span-10 h-[78vh] flex justify-center items-center
-                        bg-[linear-gradient(to_bottom_right,#00278B_0%,#0036BE_35%,#00278B_73%,#0044F1_100%)] ">
-          <div>
-            <h2 className=" font-bold text-white max-w-xl mx-auto mb-8">
-              {settings?.ctaHeadline || "Join us in creating and publishing art"}
-            </h2>
+        {/* PORTFOLIO */}
+        <section className="container-press section-space-y ">
+          <div className="container-layout  ">
+            <div className="col-span-2">
+              <p className="eyebrow">Our portfolio</p>
+            </div>
 
-            <PillButton href="/contact" variant="pill-white">
-              {settings?.ctaButtonText || "Let us collaborate"}
-            </PillButton>
+            <div className="col-start-4 col-span-full space-y-6  ">
+              <h2 className="">
+                Work that speaks
+                <br />
+                louder than pitches.
+              </h2>
+
+              <PillButton href="/portfolio" variant="pill-primary">
+                Explore more
+              </PillButton>
+            </div>
           </div>
-        </div>
-      </section>
+
+          {portfolioItems.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[1.5em]">
+              {portfolioItems.map((item: PortfolioItem, i: number) => (
+                <PortfolioCard key={item._id} item={item} index={i} />
+              ))}
+            </div>
+          ) : (
+            <p className="">
+              No portfolio items marked as featured yet
+            </p>
+          )}
+        </section>
+
+        {/* PROCESS */}
+        <section className="container-press section-space-y ">
+          <div className="container-layout  ">
+            <div className="col-span-2">
+              <p className="eyebrow">Our process</p>
+            </div>
+
+            <div className="col-start-4 col-span-full space-y-6  ">
+              <h2 className="">
+                {settings?.processHeadline || "A simple yet powerful and efficient process."}
+              </h2>
+
+              <PillButton href="/contact" variant="pill-primary">
+                Get started
+              </PillButton>
+            </div>
+          </div>
+
+          <div className="grid items-center justify-center sm:grid-cols-2 lg:grid-cols-3 gap-[1.25em]">
+            {processSteps.map((step: ProcessStep, i: number) => (
+              <div
+                key={i}
+                className={`${processStyles[i % 3]} rounded-2xl px-8 pt-4 pb-8 lg:px-10  lg:pt-10 lg:pb-17  min-h-70  flex flex-col items-center justify-between`}
+              >
+                <span className="font-display  text-[50px] lg:text-[80px] font-semibold">
+                  {String(i + 1).padStart(2, "0")}.
+                </span>
+                <div>
+                  <h3 className="text-center text-[30px] lg:text-[40px] font-medium mb-4 lg:mb-5">{step.title}</h3>
+                  <p className=" text-current">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* TESTIMONIALS */}
+        {testimonials.length > 0 && (
+          <section className="container-press section-space-y">
+            <div className="container-layout  ">
+              <div className="col-span-2">
+                <p className="eyebrow">Testimonial</p>
+              </div>
+
+              <div className="col-start-4 col-span-full space-y-6  ">
+                <h2 className="">
+                  Don&apos;t take our word for it.
+                  <br />
+                  Hear from our authors.
+                </h2>
+
+                <PillButton href="/contact" variant="pill-primary">
+                  Get in touch
+                </PillButton>
+              </div>
+            </div>
+
+            <TestimonialsCarousel testimonials={testimonials} />
+          </section>
+        )}
+
+        {/* FAQ */}
+        {faqs.length > 0 && (
+          <section className="container-press ">
+            <div className="container-layout  ">
+              <div className="col-span-2">
+                <p className="eyebrow">FAQs</p>
+              </div>
+
+              <div className="col-start-4 col-span-full space-y-[1.5em]  ">
+                <h2 className="">
+                  Got questions?
+                  <br />
+                  We&apos;ve got answers.
+                </h2>
+                
+                <FaqAccordion items={faqs} />
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* CTA BANNER */}
+        <section className="container-press md:grid grid-cols-12 gap-[1.25em]  ">
+          <div className="rounded-3xl px-8 py-20 md:py-28 text-center col-start-2 col-span-10 h-[78vh] flex justify-center items-center
+                          bg-[linear-gradient(to_bottom_right,#00278B_0%,#0036BE_35%,#00278B_73%,#0044F1_100%)] ">
+            <div>
+              <h2 className=" font-bold text-white max-w-xl mx-auto mb-8">
+                {settings?.ctaHeadline || "Join us in creating and publishing art"}
+              </h2>
+
+              <PillButton href="/contact" variant="pill-white">
+                {settings?.ctaButtonText || "Let us collaborate"}
+              </PillButton>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
