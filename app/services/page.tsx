@@ -48,17 +48,19 @@ export default async function ServicesPage() {
             : null;
 
           return (
-            <div key={service._id} className="flex gap-[1em] md:gap-[3em]">
-              <span className="bookmark-number">
-                {String(i + 1).padStart(2, "0")}
-              </span>
+            <div key={service._id} className="flex flex-col  gap-[1em] lg:gap-[1em]">
+              <div className=" w-full  lg:w-[50%] flex flex-col lg:flex-row gap-[1em] lg:gap-[3em]">
+                <span className="bookmark-number">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
 
-              <div className="w-full">
-                <h3 className="mb-4">
+                <h3 className="">
                   {service.title}
                 </h3>
+              </div>
 
-                <p className="max-w-xl mb-8">
+              <div className="w-full">
+                <p className="max-w-xl mb-6">
                   {service.summary}
                 </p>
 

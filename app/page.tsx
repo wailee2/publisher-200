@@ -205,11 +205,10 @@ export default async function HomePage() {
                     <span className="bookmark-number">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <div>
-                      <h3 className=" transition-colors duration-500 ease-out ngroup-hover:text-primary">
-                        {service.title}
-                      </h3>
-                    </div>
+                    
+                    <h3 className=" transition-colors duration-500 ease-out ngroup-hover:text-primary">
+                      {service.title}
+                    </h3>
                   </div>
 
                   <div className="lg:w-[60%] flex flex-col-reverse lg:flex-row gap-y-[1.25em] gap-x-[3em]">
