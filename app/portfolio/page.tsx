@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { getAllPortfolioItems } from "@/lib/queries";
 import PortfolioCard from "@/components/PortfolioCard";
 import type { PortfolioItem } from "@/lib/types";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Portfolio | The Odoh Publishers",
+export const metadata: Metadata = buildMetadata({
+  title: "Portfolio",
   description: "Work published and designed by The Odoh Publishers.",
-};
+  path: "/portfolio",
+});
 
 export default async function PortfolioPage() {
   const items = await getAllPortfolioItems().catch(() => []);

@@ -3,11 +3,13 @@ import type { Metadata } from "next";
 import { getSiteSettings, getTeamMembers } from "@/lib/queries";
 import { urlForImage } from "@/sanity/image";
 import type { TeamMember } from "@/lib/types";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About | The Odoh Publishers",
+export const metadata: Metadata = buildMetadata({
+  title: "About",
   description: "The team behind The Odoh Publishers and the story of how it started.",
-};
+  path: "/about",
+});
 
 export default async function AboutPage() {
   const [settings, team] = await Promise.all([
@@ -64,11 +66,23 @@ export default async function AboutPage() {
               const photoUrl = member.photo
                 ? urlForImage(member.photo).width(500).height(600).url()
                 : null;
+              const initials = member.name
+                .split(" ")
+                .map((n) => n[0])
+                .slice(0, 2)
+                .join("")
+                .toUpperCase();
               return (
                 <div key={member._id} className="rounded-xl overflow-hidden border border-border">
                   <div className="aspect-4/5 bg-bg-secondary relative">
-                    {photoUrl && (
+                    {photoUrl ? (
                       <Image src={photoUrl} alt={member.name} fill className="object-cover grayscale" />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="w-16 h-16 rounded-full bg-primary  flex items-center justify-center font-display text-xl font-semibold">
+                          {initials}
+                        </span>
+                      </div>
                     )}
                   </div>
                   <div className="p-[0.5em]">

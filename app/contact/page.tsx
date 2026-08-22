@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { getSiteSettings } from "@/lib/queries";
 import ContactForm from "@/components/ContactForm";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact | The Odoh Publishers",
+export const metadata: Metadata = buildMetadata({
+  title: "Contact",
   description: "Get in touch with The Odoh Publishers.",
-};
+  path: "/contact",
+});
 
 export default async function ContactPage() {
   const settings = await getSiteSettings().catch(() => null);

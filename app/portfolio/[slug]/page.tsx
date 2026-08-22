@@ -5,15 +5,34 @@ import type { Metadata } from "next";
 import { getPortfolioItemBySlug } from "@/lib/queries";
 import { urlForImage } from "@/sanity/image";
 import { PillButton } from "@/components/PillButton";
+import { buildMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const item = await getPortfolioItemBySlug(slug).catch(() => null);
-  return {
-    title: item ? `${item.title} | The Odoh Publishers` : "Portfolio | The Odoh Publishers",
-  };
+
+  if (!item) {
+    return buildMetadata({
+      title: "Portfolio",
+      description: "Work published and designed by The Odoh Publishers.",
+      path: "/portfolio",
+    });
+  }
+
+  const ogImage = item.cover
+    ? urlForImage(item.cover).width(1200).height(630).fit("crop").url()
+    : undefined;
+
+  return buildMetadata({
+    title: item.title,
+    description:
+      item.summary ||
+      `${item.title}${item.author ? ` by ${item.author}` : ""} — published by The Odoh Publishers.`,
+    path: `/portfolio/${slug}`,
+    image: ogImage,
+  });
 }
 
 export default async function PortfolioDetailPage({ params }: Props) {

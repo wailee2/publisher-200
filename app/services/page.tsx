@@ -3,11 +3,13 @@ import Image from "next/image";
 import { getAllServices } from "@/lib/queries";
 import { urlForImage } from "@/sanity/image";
 import type { Service } from "@/lib/types";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services | The Odoh Publishers",
+export const metadata: Metadata = buildMetadata({
+  title: "Services",
   description: "Full-service publishing, editing, design, and consultation from The Odoh Publishers.",
-};
+  path: "/services",
+});
 
 const FALLBACK_SERVICES = [
   { _id: "1", title: "Full-service publishing", summary: "Editing, cover and interior design, ISBN registration, print production, and distribution - for writers we bring onto the Odoh Publishers list." },
