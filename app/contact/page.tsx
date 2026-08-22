@@ -3,8 +3,8 @@ import { getSiteSettings } from "@/lib/queries";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact — The Odoh Publishers",
-  description: "Get in touch with The Odoh Publishers — submissions, services, and press.",
+  title: "Contact | The Odoh Publishers",
+  description: "Get in touch with The Odoh Publishers.",
 };
 
 export default async function ContactPage() {

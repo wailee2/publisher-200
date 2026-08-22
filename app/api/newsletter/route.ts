@@ -1,9 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Minimal newsletter capture. This posts the email to Resend's Audiences
-// API. If you'd rather use Mailchimp or Brevo (both have generous free
-// tiers and simpler no-code embeds), swap this route's body for their
-// REST API call — the frontend form doesn't need to change.
 export async function POST(req: NextRequest) {
   const { email } = await req.json();
 

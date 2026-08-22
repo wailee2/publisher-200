@@ -1,10 +1,5 @@
 import { defineField, defineType } from "sanity";
 
-// Renamed from "book" to "portfolioItem" — the Portfolio section shows
-// published work as case studies (cover + title + category), not a
-// sellable catalog. If Odoh Publishers later wants direct book sales,
-// price/ISBN/purchaseLink fields can be added back without breaking
-// this schema.
 export const portfolioItem = defineType({
   name: "portfolioItem",
   title: "Portfolio Item",
@@ -35,13 +30,13 @@ export const portfolioItem = defineType({
       name: "category",
       title: "Category",
       type: "string",
-      description: "e.g. Poetry, Fiction, Cover Design, Editorial — shown as a small label.",
+      description: "e.g. Poetry, Fiction, Cover Design, Editorial",
     }),
     defineField({
       name: "author",
       title: "Author",
       type: "string",
-      description: "Optional — leave blank for non-book design work.",
+      description: "Optional - leave blank for non-book design work.",
     }),
     defineField({
       name: "summary",
@@ -53,7 +48,7 @@ export const portfolioItem = defineType({
       name: "externalLink",
       title: "External link",
       type: "url",
-      description: "Optional — link to buy, read, or view the full case study elsewhere.",
+      description: "Optional - link to buy, read, or view the full case study elsewhere.",
     }),
     defineField({
       name: "order",
@@ -66,7 +61,7 @@ export const portfolioItem = defineType({
       title: "Feature on homepage",
       type: "boolean",
       initialValue: false,
-      description: "Homepage shows a limited grid — toggle which items appear there.",
+      description: "Homepage shows a limited grid - toggle which items appear there.",
     }),
   ],
   orderings: [

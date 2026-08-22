@@ -4,7 +4,7 @@ import PortfolioCard from "@/components/PortfolioCard";
 import type { PortfolioItem } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Portfolio — The Odoh Publishers",
+  title: "Portfolio | The Odoh Publishers",
   description: "Work published and designed by The Odoh Publishers.",
 };
 
@@ -39,7 +39,7 @@ export default async function PortfolioPage() {
         <div className="mt-16 border border-border rounded-xl p-10 max-w-lg">
           <p className="font-body text-text-secondary">
             No portfolio items yet. Add your first one in the studio at{" "}
-            <code className="text-primary">/studio</code> — under{" "}
+            <code className="text-primary">/studio</code> - under{" "}
             <strong>Portfolio → Create</strong>.
           </p>
         </div>

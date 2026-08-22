@@ -111,7 +111,7 @@ export default async function HomePage() {
               <div className="space-y-6">
                 <p className=" text-white/80 max-w-[85%] sm:max-w-[80%] md:max-w-[60%] ">
                   {settings?.heroSubtext ||
-                    "We publish fiction, poetry, and non-fiction from writers who have something to say — and edit it like it matters."}
+                    "We publish fiction, poetry, and non-fiction from writers who have something to say - and edit it like it matters."}
                 </p>
                 
                 <PillButton href="/services" variant="pill-white">
@@ -186,7 +186,7 @@ export default async function HomePage() {
               ? services.slice(0, 4)
               : [
                   { _id: "1", title: "Full-service publishing", 
-                    summary: "Editing, cover and interior design, ISBN registration, print production, and distribution — for writers we bring onto the Odoh Publishers list." },
+                    summary: "Editing, cover and interior design, ISBN registration, print production, and distribution - for writers we bring onto the Odoh Publishers list." },
                   { _id: "2", title: "Developmental & line editing", summary: "Structural feedback on plot, pacing, and argument, followed by sentence-level line editing." },
                   { _id: "3", title: "Cover & interior design", summary: "Standalone design services for self-publishing authors who already have an editor." },
                   { _id: "4", title: "Manuscript consultation", summary: "A single paid session to assess a manuscript's readiness and map out next steps." },

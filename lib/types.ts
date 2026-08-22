@@ -1,7 +1,3 @@
-// Lightweight shared types for Sanity content shapes used across pages.
-// These mirror the GROQ projections in lib/queries.ts — not full Sanity
-// document types, just what the UI actually destructures.
-
 export type SanityImage = {
   asset?: { _ref: string };
 } | undefined;

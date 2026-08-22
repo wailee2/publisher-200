@@ -5,7 +5,7 @@ import { urlForImage } from "@/sanity/image";
 import type { TeamMember } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "About — The Odoh Publishers",
+  title: "About | The Odoh Publishers",
   description: "The team behind The Odoh Publishers and the story of how it started.",
 };
 

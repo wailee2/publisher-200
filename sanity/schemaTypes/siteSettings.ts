@@ -46,7 +46,7 @@ export const siteSettings = defineType({
         },
       ],
       validation: (Rule) => Rule.max(3),
-      description: "Editorial / Design / Distribution — max 3, matches the fixed 3-card layout.",
+      description: "Editorial / Design / Distribution - max 3, matches the fixed 3-card layout.",
     }),
 
     defineField({ name: "aboutHeadline", title: "Headline", type: "string", group: "about" }),
@@ -70,7 +70,7 @@ export const siteSettings = defineType({
         },
       ],
       validation: (Rule) => Rule.max(3),
-      description: "Consultation / Content Creation / Publication — max 3, matches the fixed layout (grey / blue / dark cards).",
+      description: "Consultation / Content Creation / Publication - max 3, matches the fixed layout (grey / blue / dark cards).",
     }),
 
     defineField({ name: "ctaHeadline", title: "Headline", type: "string", group: "cta" }),

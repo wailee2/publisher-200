@@ -76,7 +76,7 @@ export default function ContactForm() {
       </PillButton>
       {status === "error" && (
         <p role="alert" className=" text-small ">
-          Something went wrong on our end — please try again or email us directly.
+          Something went wrong on our end - please try again or email us directly.
         </p>
       )}
     </form>

@@ -5,15 +5,15 @@ import { urlForImage } from "@/sanity/image";
 import type { Service } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Services — The Odoh Publishers",
+  title: "Services | The Odoh Publishers",
   description: "Full-service publishing, editing, design, and consultation from The Odoh Publishers.",
 };
 
 const FALLBACK_SERVICES = [
-  { _id: "1", title: "Full-service publishing", summary: "Editing, cover and interior design, ISBN registration, print production, and distribution — for writers we bring onto the Odoh Publishers list." },
+  { _id: "1", title: "Full-service publishing", summary: "Editing, cover and interior design, ISBN registration, print production, and distribution - for writers we bring onto the Odoh Publishers list." },
   { _id: "2", title: "Developmental & line editing", summary: "Structural feedback on plot, pacing, and argument, followed by sentence-level line editing. For manuscripts that are close but not yet ready to submit anywhere." },
   { _id: "3", title: "Cover & interior design", summary: "Standalone design services for self-publishing authors who already have an editor and just need a cover and interior layout that hold up on a shelf." },
-  { _id: "4", title: "Manuscript consultation", summary: "A single paid session to assess a manuscript's readiness and map out what it needs before submission — to us or anyone else." },
+  { _id: "4", title: "Manuscript consultation", summary: "A single paid session to assess a manuscript's readiness and map out what it needs before submission - to us or anyone else." },
 ];
 
 export default async function ServicesPage() {

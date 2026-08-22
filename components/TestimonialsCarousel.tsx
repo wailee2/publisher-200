@@ -6,8 +6,8 @@ import { urlForImage } from "@/sanity/image";
 import type { Testimonial } from "@/lib/types";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 
-const MOBILE_BREAKPOINT = 640; // matches Tailwind's `sm`
-const MOBILE_GUTTER = 16; // small natural left/right padding on mobile, in px
+const MOBILE_BREAKPOINT = 640;
+const MOBILE_GUTTER = 16;
 
 export default function TestimonialsCarousel({ testimonials }: { testimonials: Testimonial[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -81,7 +81,6 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
   const el = scrollRef.current;
   if (!el) return;
 
-  // defer initial measurement to next frame — avoids calling setState
   // synchronously during the effect's commit phase
   const initId = requestAnimationFrame(() => {
     updateEdges();

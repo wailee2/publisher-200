@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const item = await getPortfolioItemBySlug(slug).catch(() => null);
   return {
-    title: item ? `${item.title} — The Odoh Publishers` : "Portfolio — The Odoh Publishers",
+    title: item ? `${item.title} | The Odoh Publishers` : "Portfolio | The Odoh Publishers",
   };
 }
 
