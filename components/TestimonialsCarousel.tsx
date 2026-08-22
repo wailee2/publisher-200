@@ -167,6 +167,12 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
           const photoUrl = t.authorPhoto
             ? urlForImage(t.authorPhoto).width(80).height(80).url()
             : null;
+            const initials = t.authorName
+            .split(" ")
+            .map((n) => n[0])
+            .slice(0, 2)
+            .join("")
+            .toUpperCase();
           return (
             <div
               key={t._id}
@@ -181,8 +187,12 @@ export default function TestimonialsCarousel({ testimonials }: { testimonials: T
               <p className="">&ldquo;{t.quote}&rdquo;</p>
               <div className="flex items-center gap-3 mt-6">
                 <div className="size-10 rounded-full bg-bg overflow-hidden relative shrink-0">
-                  {photoUrl && (
+                  {photoUrl ? (
                     <Image src={photoUrl} alt={t.authorName} fill className="object-cover" draggable={false} />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-primary text-text-on-primary text-xsmall font-semibold">
+                      {initials}
+                    </div>
                   )}
                 </div>
                 <div>

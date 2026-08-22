@@ -25,19 +25,13 @@ export default function PortfolioCard({
   return (
     <Link href={`/portfolio/${item.slug.current}`} className="group block">
       <div className="aspect-square bg-bg-secondary overflow-hidden mb-4 relative rounded-2xl">
-        {coverUrl ? (
-          <Image
-            src={coverUrl}
-            alt={item.title}
-            fill
-            sizes="(max-width: 768px) 45vw, 30vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-text-muted text-small px-4 text-center">
-            Add a cover image in the studio
-          </div>
-        )}
+        <Image
+          src={coverUrl || "/images/portfolio-placeholder.jpg"}
+          alt={coverUrl ? item.title : ""}
+          fill
+          sizes="(max-width: 768px) 45vw, 30vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
       </div>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
